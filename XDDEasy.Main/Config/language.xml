@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+  <Group Name="zh-Hans" ViewName="简体中文" ClientPath="~/api/resource/culture/zh-Hans">
+    <![CDATA[zh,zh-CN]]>
+  </Group>
+  <!--
+  <Group Name="zh-TW" ViewName="繁体中文" ClientPath="~/api/resource/culture/zh-TW">
+    <![CDATA[zh-TW]]>
+  </Group>
+-->
+  <Group Name="en-US" ViewName="English" ClientPath="~/api/resource/culture/en-US" Default="true">
+    <![CDATA[en,en-US]]>
+  </Group>
+</Root>
