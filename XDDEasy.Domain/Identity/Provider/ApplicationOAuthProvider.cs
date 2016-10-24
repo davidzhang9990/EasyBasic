@@ -121,7 +121,7 @@ namespace XDDEasy.Domain.Identity.Provider
 
             foreach (var claim in identity.Claims)
             {
-                if (claim.Type.StartsWith("eql"))
+                if (claim.Type.StartsWith("easy"))
                     data.Add(claim.Type.Substring(4), claim.Value);
             }
             return new AuthenticationProperties(data);

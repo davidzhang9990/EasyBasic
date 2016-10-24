@@ -13,7 +13,7 @@ namespace Common.Models
         public List<EnumRole> Roles { get; set; }
         public List<string> RoleIds { get; set; }
         //public string HostAdress { get; set; }
-        public string FullName { get; set; }
+        public string UserName { get; set; }
 
         public static void SetToCallContext(RequestContext requestContext)
         {

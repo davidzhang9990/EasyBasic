@@ -8,6 +8,7 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Routing;
 using AutoMapper;
+using Common.Helper;
 using XDDEasy.Contract;
 using XDDEasy.Contract.AccountContract;
 using XDDEasy.Domain.Identity;
@@ -38,7 +39,16 @@ namespace XDDEasy.Main.Controllers
         private readonly RequestContext _requestContext;
         private readonly ILog _log;
 
-        public AccountController(EasyUserManager userManager, EasySignInManager signInManager, IAuthenticationManager authenticationManager, IEqlHttpClient client, IAccountService accountService, IEmailService emailService, Common.Models.RequestContext requestContext, ILog log)
+        //
+        public AccountController(
+            EasyUserManager userManager,
+            EasySignInManager signInManager,
+            IAuthenticationManager authenticationManager,
+            IEqlHttpClient client,
+            IAccountService accountService,
+            IEmailService emailService,
+            RequestContext requestContext, ILog log
+            )
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -76,13 +86,25 @@ namespace XDDEasy.Main.Controllers
                 return View(model);
             }
 
+            var user = _userManager.FindByName(model.UserName);
+
             // 这不会计入到为执行帐户锁定而统计的登录失败次数中
             // 若要在多次输入错误密码的情况下触发帐户锁定，请更改为 shouldLockout: true
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+
+                    //获取外部登录信息
+                    var loginInfo = _authenticationManager.GetExternalLoginInfo();
+                    if (loginInfo != null)
+                    {
+                        //添加外部登录信息
+                        _userManager.AddLogin(user.Id, loginInfo.Login);
+                    }
+
+                    return GetActionResultAfterAuthenticated(model.UserName);
+                    //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -92,6 +114,95 @@ namespace XDDEasy.Main.Controllers
                     ModelState.AddModelError("", "无效的登录尝试。");
                     return View(model);
             }
+        }
+
+        private ActionResult GetActionResultAfterAuthenticated(string userName)
+        {
+            List<string> roles = null;
+            string userId;
+            if (!string.IsNullOrEmpty(userName))
+            {
+                var user = _userManager.FindByName(userName);
+                roles = _userManager.GetRoles(user.Id).ToList();
+                userId = user.Id;
+            }
+            else
+            {
+
+                userId = ClaimHelper.GetClaimValue(EasyClaimType.UserId);
+                var roleString = ClaimHelper.GetClaimValue(EasyClaimType.Roles);
+                if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(roleString))
+                {
+                    //get socail login info
+                    var claimIdentity = _authenticationManager.GetExternalIdentity(DefaultAuthenticationTypes.ExternalCookie);
+                    if (claimIdentity != null)
+                    {
+                        var idClaim = claimIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+                        if (idClaim != null)
+                        {
+                            var user = _userManager.Find(new UserLoginInfo(idClaim.Issuer, idClaim.Value));
+                            if (user != null)
+                            {
+                                userId = user.Id;
+                                roles = _userManager.GetRoles(user.Id).ToList();
+                            }
+                        }
+                    }
+                }
+                if (roleString != null && !string.IsNullOrEmpty(roleString))
+                {
+                    roles = roleString.Split(',').ToList();
+                }
+            }
+            if (roles != null && roles.Count > 0)
+            {
+                foreach (var role in roles)
+                {
+                    switch (role)
+                    {
+                        case "SystemMember":
+                            //return RedirectToAction("Sessions", "Answer", new { area = "Parent", studentId = userId });
+                            // _authenticationManager.SignOut();
+                            //ModelState.AddModelError("", "Student can't login portal");
+                            return View("Index", new LoginViewModel());
+
+                            //return RedirectToAction("Index", "Session", new { area = "Student" });
+
+                        //case "RegisteredTeacher":
+                        //    var eu1 = _userManager.FindById(userId);
+                        //    if (!eu1.EmailConfirmed)
+                        //    {
+                        //        _authenticationManager.SignOut();
+                        //        return RedirectToAction("SendConfimEmail", new SendAccountEmailViewModel
+                        //        {
+                        //            UserId = eu1.Id,
+                        //            UserName = eu1.UserName,
+                        //            FirstName = eu1.FirstName,
+                        //            Email = eu1.Email
+                        //        });
+                        //    }
+                        //    return RedirectToAction("Index", "Dashboard", new { area = "Teacher", p = 1 });
+                        case "SchoolAdmin":
+                        case "System":
+                            return RedirectToAction("Index", "Question", new { area = "Teacher" });
+
+                        default:
+                            return View("Index", new LoginViewModel());
+                            //var pages =
+                            //    _client.GetAsyncContent<IList<RolePageResponse>>("api/page/role/" + string.Join(",", roles));
+                            //if (pages != null && pages.Any())
+                            //{
+                            //    var firstPage = pages.First();
+                            //    return RedirectToAction(firstPage.ActionName, firstPage.ControlName, new { area = firstPage.Area, p = 1 });
+                            //}
+                            break;
+                    }
+                }
+            }
+
+            _authenticationManager.SignOut();
+            ModelState.AddModelError("", EasyResource.Value("UI_ValMsg_CannotLogin"));
+            return View("Index", new LoginViewModel());
         }
 
         //

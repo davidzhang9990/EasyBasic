@@ -57,7 +57,7 @@ namespace Common.WebApi.Handler
 
             var userLogResponse = new UserLogResponse()
             {
-                UserId = ClaimHelper.GetClaimValue(EqlClaimType.UserId),
+                UserId = ClaimHelper.GetClaimValue(EasyClaimType.UserId),
                 Ip = baseRequest[baseRequest.ServerVariables["HTTP_VIA"] != null
                                 ? "HTTP_X_FORWARDED_FOR"
                                 : "REMOTE_ADDR"],

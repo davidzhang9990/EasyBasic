@@ -46,16 +46,12 @@ namespace XDDEasy.Domain
                 if (requestContext == null)
                 {
                     requestContext = new RequestContext();
-                    var userId = ClaimHelper.GetClaimValue(EqlClaimType.UserId);
-                    var schoolId = ClaimHelper.GetClaimValue(EqlClaimType.SchoolId);
-                    var roles = ClaimHelper.GetClaimValue(EqlClaimType.Roles);
-                    var roleIds = ClaimHelper.GetClaimValue(EqlClaimType.RoleIds);
-                    var type = ClaimHelper.GetClaimValue(EqlClaimType.Type);
-                    var fullName = ClaimHelper.GetClaimValue(EqlClaimType.FullName);
+                    var userId = ClaimHelper.GetClaimValue(EasyClaimType.UserId);
+                    var roles = ClaimHelper.GetClaimValue(EasyClaimType.Roles);
+                    var roleIds = ClaimHelper.GetClaimValue(EasyClaimType.RoleIds);
+                    var userName = ClaimHelper.GetClaimValue(EasyClaimType.UserName);
                     requestContext.UserId = string.IsNullOrEmpty(userId) ? Guid.Empty : new Guid(userId);
-                    //requestContext.SchoolId = string.IsNullOrEmpty(schoolId) ? Guid.Empty : new Guid(schoolId);
-                    //requestContext.Type = string.IsNullOrEmpty(schoolId) ? EnumAccountType.RegisterSelf : (EnumAccountType)Enum.Parse(typeof(EnumAccountType), type, true);
-                    requestContext.FullName = fullName;
+                    requestContext.UserName = userName;
                     if (string.IsNullOrEmpty(roles))
                         requestContext.Roles = new List<EnumRole>();
                     else

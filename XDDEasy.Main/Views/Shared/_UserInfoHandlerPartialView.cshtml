@@ -1,0 +1,32 @@
+﻿@using Common.Helper
+@using Common.Models
+
+<script type="text/javascript">
+
+    //document.onkeydown = function (e) {
+    //    var theEvent = window.event || e;
+    //    var code = theEvent.keyCode || theEvent.which;
+    //    if (code == 13) {
+    //        $("#btnSave").click();
+    //        return false;
+    //    }
+    //}
+
+    $.userInfo = {
+        type: "@ClaimHelper.GetClaimValue(EqlClaimType.Type)",
+        userId: "@ClaimHelper.GetClaimValue(EqlClaimType.UserId).ToLower()",
+        userName: "@ClaimHelper.GetClaimValue(EqlClaimType.UserName)",
+        email: "@ClaimHelper.GetClaimValue(EqlClaimType.Email)",
+        roles: "@ClaimHelper.GetClaimValue(EqlClaimType.Roles)".split(","),
+        photo: $('<div>').html("@ClaimHelper.GetClaimValue(EqlClaimType.Photo)").text()
+    };
+
+    $.roleEnum = {
+        Student: "Student",
+        Teacher: "Teacher",
+        System: "System",
+        SchoolAdmin: "SchoolAdmin",
+        RegisteredTeacher: "RegisteredTeacher",
+        ChannelAccount: "ChannelAccount"
+    };
+</script>

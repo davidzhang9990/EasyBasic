@@ -45,9 +45,8 @@ namespace Common.WebApi.RequestContext
             else
             {
                 var requestContext = new Models.RequestContext();
-                var userId = ClaimHelper.GetClaimValue(EqlClaimType.UserId);
-                var schoolId = ClaimHelper.GetClaimValue(EqlClaimType.SchoolId);
-                var roles = ClaimHelper.GetClaimValue(EqlClaimType.Roles);
+                var userId = ClaimHelper.GetClaimValue(EasyClaimType.UserId);
+                var roles = ClaimHelper.GetClaimValue(EasyClaimType.Roles);
                 requestContext.UserId = string.IsNullOrEmpty(userId) ? Guid.Empty : new Guid(userId);
                 if (string.IsNullOrEmpty(roles))
                     requestContext.Roles = new List<EnumRole>();

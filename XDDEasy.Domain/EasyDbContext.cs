@@ -92,9 +92,6 @@ namespace XDDEasy.Domain
                 .ToTable("UserLogin");
 
             #endregion
-
-
-
         }
 
         public override int SaveChanges()

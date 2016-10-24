@@ -78,9 +78,24 @@ namespace XDDEasy.Domain.AccountAggregates
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
+            var roles = await manager.GetRolesAsync(Id);
             // 请注意，authenticationType 必须与 CookieAuthenticationOptions.AuthenticationType 中定义的相应项匹配
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // 在此处添加自定义用户声明
+            userIdentity.AddClaim(new Claim(EasyClaimType.UserId, Id ?? string.Empty));
+            userIdentity.AddClaim(new Claim(EasyClaimType.UserName, UserName));
+            userIdentity.AddClaim(new Claim(EasyClaimType.Sex, Sex.ToString()));
+            userIdentity.AddClaim(new Claim(EasyClaimType.Email, string.IsNullOrEmpty(Email) ? string.Empty : Email));
+            userIdentity.AddClaim(new Claim(EasyClaimType.Roles, roles == null ? string.Empty : string.Join(",", roles)));
+            userIdentity.AddClaim(new Claim(EasyClaimType.RoleIds, Roles == null ? string.Empty : string.Join(",", Roles.Select(x => x.RoleId))));
+            //userIdentity.AddClaim(new Claim(EasyClaimType.Language, Language ?? string.Empty));
+
+            #if DEBUG
+                        foreach (var claim in userIdentity.Claims)
+                        {
+                            Debug.WriteLine("Claim type:{0}    Claim value:{1}", claim.Type, claim.Value);
+                        }
+            #endif
             return userIdentity;
         }
     }

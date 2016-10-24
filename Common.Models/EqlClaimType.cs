@@ -6,23 +6,16 @@ using System.Threading.Tasks;
 
 namespace Common.Models
 {
-    public class EqlClaimType
+    public class EasyClaimType
     {
-        public const string UserId = "eql:userId";
-        public const string UserName = "eql:userName";
-        public const string SchoolId = "eql:schoolId";
-        public const string SchooolName = "eql:schoolName";
-        public const string SchooolType = "eql:schoolType";
-        public const string Roles = "eql:roles";
-        public const string RoleIds = "eql:roleIds";
-        public const string FirstName = "eql:firstName";
-        public const string LastName = "eql:lastName";
-        public const string FullName = "eql:fullName";
-        public const string Photo = "eql:photo";
-        public const string Sex = "eql:sex";
-        public const string Email = "eql:email";
-        public const string Phone = "eql:phone";
-        public const string Language = "eql:language";
-        public const string Type = "eql:accountType";
+        public const string UserId = "easy:userId";
+        public const string UserName = "easy:userName";
+        public const string Roles = "easy:roles";
+        public const string RoleIds = "easy:roleIds";
+        public const string Sex = "easy:sex";
+        public const string Email = "easy:email";
+        public const string Phone = "easy:phone";
+        public const string Language = "easy:language";
+        public const string Type = "easy:accountType";
     }
 }

@@ -59,7 +59,7 @@ namespace Common.Helper
                     ? cookie.Value
                     : GetLangByHeadInfo();
 
-            var userId = ClaimHelper.GetClaimValue(EqlClaimType.UserId);
+            var userId = ClaimHelper.GetClaimValue(EasyClaimType.UserId);
             // islogin and cache exists
             if (string.IsNullOrEmpty(userId) || GetReadStats())
             {
