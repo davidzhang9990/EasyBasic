@@ -28,6 +28,7 @@ namespace XDDEasy.Domain
     {
         public void Register(ContainerBuilder containerBuilder)
         {
+            //注册Resiter
             RegisterIdentity(containerBuilder);
 
             containerBuilder.Register(context => EasyDbContext.Create())
