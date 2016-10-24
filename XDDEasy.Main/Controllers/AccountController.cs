@@ -74,6 +74,12 @@ namespace XDDEasy.Main.Controllers
             return View();
         }
 
+        //管理后台首页
+        public ActionResult MIndex()
+        {
+            return View("_MIndex");
+        }
+
         //
         // POST: /Account/Login
         [HttpPost]
@@ -164,8 +170,8 @@ namespace XDDEasy.Main.Controllers
                             //return RedirectToAction("Sessions", "Answer", new { area = "Parent", studentId = userId });
                             // _authenticationManager.SignOut();
                             //ModelState.AddModelError("", "Student can't login portal");
-                            return View("Index", new LoginViewModel());
-
+                            //return View("Index", new LoginViewModel());
+                            return RedirectToAction("Index", "Member", new { area = "Member" });
                             //return RedirectToAction("Index", "Session", new { area = "Student" });
 
                         //case "RegisteredTeacher":
@@ -184,7 +190,7 @@ namespace XDDEasy.Main.Controllers
                         //    return RedirectToAction("Index", "Dashboard", new { area = "Teacher", p = 1 });
                         case "SchoolAdmin":
                         case "System":
-                            return RedirectToAction("Index", "Question", new { area = "Teacher" });
+                            return RedirectToAction("Index", "Member", new { area = "Admin" });
 
                         default:
                             return View("Index", new LoginViewModel());
@@ -529,6 +535,12 @@ namespace XDDEasy.Main.Controllers
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult LogOut()
+        {
+            _authenticationManager.SignOut();
+            return Redirect("/");
         }
 
         //
