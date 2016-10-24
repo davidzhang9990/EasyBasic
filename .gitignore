@@ -71,7 +71,7 @@ artifacts/
 *.tmp
 *.tmp_proj
 *.log
-!Gs.*
+!Common.*
 *.vspscc
 *.vssscc
 .builds
