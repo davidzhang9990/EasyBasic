@@ -1,115 +1,106 @@
 ﻿@model XDDEasy.Main.Models.RegisterViewModel
 @{
     ViewBag.Title = "注册";
+    Layout = "";
 }
 
-<h2>@ViewBag.Title</h2>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>注册账户</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <title>Capital Clearance LLC Activation Pin</title>
+    <link href="~/css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="Javascript" src="~/script/script.js"></script>
+    <link title="summer" media="all" href="~/css/calendar-win2k-cold-1.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="~/script/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" charset="utf-8" src="~/script/nav.js"></script>
+    <script type="text/javascript" src="~/script/calendar.js"></script>
+    <script type="text/javascript" src="~/script/calendar-en.js"></script>
+    <script type="text/javascript" src="~/script/calendar-setup.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/ccgs.css" />
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" />
+</head>
+<body>
+    <div id="main-hol">
+        <div class="header">
+            <div class="ccg-logo">
+                <img src="~/img/logo.png" width="auto" height="68px" alt="CCG" />
+            </div>
+        </div>
+        <div class="register_warp">
+            <br /><br /><br /><br /><br /><br /><br /><br /><br />
+            <div class="container">
+                <div class="col">
+                    <div class="triangle-topleft"></div>
+                    <h1>激活Pin</h1>
+                    @using (Html.BeginForm("RegisterProfile", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        <table width="auto" border="0" align="left" cellpadding="3">
+                            <tbody>
+                                <tr>
+                                    <td>国家:</td>
+                                    <td>
+                                        <select name="Country">
+                                            <option value="AE">阿联酋</option>
+                                            <option value="AR">阿根廷</option>
+                                            <option value="AU">澳大利亞</option>
+                                            <option value="BR">巴西</option>
+                                            <option value="CA">加拿大</option>
+                                            <option value="CH">瑞士</option>
+                                            <option value="CZ">捷克</option>
+                                            <option value="EU">欧洲联盟</option>
+                                            <option value="GB">英國</option>
+                                            <option value="GC" selected="">中国大陆</option>
+                                            <option value="HK">香港</option>
+                                            <option value="HU">匈牙利</option>
+                                            <option value="ID">印尼</option>
+                                            <option value="IN">印度</option>
+                                            <option value="JP">日本</option>
+                                            <option value="KR">韩国</option>
+                                            <option value="MX">墨西哥</option>
+                                            <option value="NZ">紐西蘭</option>
+                                            <option value="PH">菲律宾</option>
+                                            <option value="PL">波蘭</option>
+                                            <option value="RU">俄羅斯</option>
+                                            <option value="TH">泰国</option>
+                                            <option value="TR">土耳其</option>
+                                            <option value="TW">台湾</option>
+                                            <option value="US">美国</option>
+                                            <option value="VN">越南</option>
+                                            <option value="ZA">南非</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <input type="submit" value=" 提交 " />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <input type="hidden" name="agp" value="10" />
+                        <input type="hidden" name="DkO02Ile" id="DkO02Ile" value="zh_CN" />
+                    }
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+        <br /><br /><br /><br />
+        <div class="footer" style="position: fixed">
+            <div class="inner-foot">Capital Clearance LLC</div>
+        </div>
+    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.TrueName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.TrueName, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-     <div class="form-group">
-        @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.TwoPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.TwoPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmTwoPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmTwoPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Sex, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.RadioButtonFor(model => model.Sex, 0, new { @id = "radio2", @name = "rdolstState", @checked = true })男
-            @Html.RadioButtonFor(model => model.Sex, 1, new { @id = "radio1", @name = "rdolstState" })女
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.CardNo, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.CardNo, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.BirthDay, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.BirthDay, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Address, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ParentNumber, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.ParentNumber, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.RecNumber, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.RecNumber, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.AgentNumber, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.AgentNumber, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="注册" />
-        </div>
-    </div>
-}
 
+</body>
+</html>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

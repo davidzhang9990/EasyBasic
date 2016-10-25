@@ -5,41 +5,329 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title -后台管理</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+
+    <link title="summer" media="all" href="~/css/calendar-win2k-cold-1.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/ccg-login.css" media="screen">
+    <link rel="stylesheet" href="~/css/ccg-menu.css" media="screen">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="http://login.capitalclearance.com/member/img/fav.ico">
+
+    <script language="Javascript" src="~/script/script.js"></script>
+    <script type="text/javascript" src="~/script/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" charset="utf-8" src="~/script/nav.js"></script>
+    <script type="text/javascript" src="~/script/calendar.js"></script>
+    <script type="text/javascript" src="~/script/calendar-en.js"></script>
+    <script type="text/javascript" src="~/script/calendar-setup.js"></script>
+    <script type="text/javascript" src="~/script/member_script.js"></script>
+    <script type="text/javascript">
+        var GB_ROOT_DIR = "~/lib/jsgreybox/";
+    </script>
+    <script type="text/javascript" src="~/script/AJS.js"></script>
+    <script type="text/javascript" src="~/script/AJS_fx.js"></script>
+    <script type="text/javascript" src="~/script/gb_scripts_wo_close.js"></script>
+
+    <!--[if IE 7]>
+            <style type="text/css">
+    #col_title{ width:300px; padding:5px 3px 3px 6px; color:#51a524; font-family:Verdana; font-size:0.9em; font-weight:500}
+    #col_title_long{ width:400px; padding:5px 3px 3px 6px; color:#51a524; font-family:Verdana; font-size:0.9em; font-weight:500}
+    #bulletin_title{color:#000000; font-family:Verdana; font-size:1em; font-weight:500}
+    .system_update{font-family:Verdana; font-size:0.9em; color:#000000; font-weight:500; text-decoration:none}
+    div.sdmenu div span {	display: block;	padding: 5px 25px; font-size:14px; font-weight: 500;	color: white;	background: url('/img/expanded.gif') no-repeat 10px center;	cursor: default;	border-bottom: 1px solid #191e21}
+
+
+    </style>
+        <![endif]-->
+    <script type="text/javascript">
+        GB_myShow = function (caption, url, /* optional */ height, width, callback_fn) {
+            var options = {
+                caption: caption,
+                height: height || 350,
+                width: width || 520,
+                fullscreen: false,
+                show_loading: false,
+                callback_fn: callback_fn
+            }
+            var win = new GB_Window(options);
+            return win.show(url);
+        }
+
+        GB_myShow2 = function (caption, url, /* optional */ height, width, callback_fn) {
+
+            var options = {
+                caption: caption,
+                height: height || 350,
+                width: width || 520,
+                fullscreen: false,
+                show_loading: false,
+                callback_fn: callback_fn,
+                show_close_img: true
+            }
+            var win = new GB_Window(options);
+
+            return win.show(url);
+        }
+    </script>
+    <script language="Javascript">
+
+        function alertMsg(str) {
+            var centerWidth = (window.screen.width - 900) / 2;
+            var centerHeight = (window.screen.height - 450) / 2;
+
+            window.open(str, "mywindow", "menubar=0,resizable=1,scrollbars=1,width=900,height=450,left=" + centerWidth + ",top=" + centerHeight)
+        }
+        function popupBanner(str) {
+            var centerWidth = (window.screen.width - 640) / 2;
+            var centerHeight = (window.screen.height - 450) / 2;
+
+            window.open(str, "popwindow", "menubar=0,resizable=1,scrollbars=0,width=640,height=450,left=" + centerWidth + ",top=" + centerHeight)
+        }
+        function alertPosterKR(str, index) {
+            var centerWidth = (window.screen.width - 900) / 2;
+            var centerHeight = (window.screen.height - 450) / 2;
+
+            window.open(str, index, "menubar=0,resizable=1,scrollbars=1,width=900,height=450,left=" + centerWidth + ",top=" + centerHeight);
+        }
+
+        function alertBulletinKR(str, index) {
+            var centerWidth = (window.screen.width - 900) / 2;
+            var centerHeight = (window.screen.height - 450) / 2;
+            window.open(str, index, "menubar=0,resizable=1,scrollbars=1,width=900,height=450,left=" + centerWidth + ",top=" + centerHeight);
+        }
+
+        function viewDoc(url, index) {
+
+            if (url != '') {
+                var centerWidth = (window.screen.width - 900) / 2;
+                var centerHeight = (window.screen.height - 450) / 2;
+                window.open(url, index, "menubar=0,resizable=1,scrollbars=1,width=900,height=450,left=" + centerWidth + ",top=" + centerHeight);
+                //var win = window.open(url, '_blank');
+                //win.focus();
+            }
+        }
+    </script>
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div id="main-hol">
+        <div id="lock-header">
+            <div class="header">
+                <div class="ccg-logo">
+                    <form name="mbrMenuLocale" id="mbrMenuLocale">
+                        <input type="hidden" name="agp" value="10">
+                        <input type="hidden" name="locale" id="locale" value="zh_CN">
+                        <img src="~/img/logo.png" width="auto" height="78px" alt="CCG">
+                        <div class="menu">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-home"></i> 主页</a></li>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1120&amp;JdkSeOIUy=1476877861036&amp;ZsnJOI1=157dcc7c0ac&amp;locale=null#"><i class="fa fa-globe"></i> 区域</a>
+                                    <ul>
+                                        <li><a href="javascript:changeLocale(&#39;en_US&#39;);"><i class="fa fa-book"></i> English</a></li>
+                                        <li><a href="javascript:changeLocale(&#39;ja_JP&#39;);"><i class="fa fa-book"></i> 日本語</a></li>
+                                        <li><a href="javascript:changeLocale(&#39;ko_KR&#39;);"><i class="fa fa-book"></i> 한국어</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#"><i class="fa fa-book"></i> 提交需求单</a></li>
+                                <li><a href="/Account/LogOut" class="red"><i class="fa fa-sign-out"></i> 登出</a></li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
-                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+
+            <div id="menu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="#">我的帐户<span class="arrow">▼</span></a>
+                            <ul>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3500&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">个人档案查询</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3510&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">更新档案</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3530&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">更改密码</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3580&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">更改二级密码</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1736&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">注册收款人</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1740&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">银行帐户户口清单</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">认购<span class="arrow">▼</span></a>
+                            <ul>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3710&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">注册</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3176&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">购买单位配套</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3190&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">单位编码列表</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=311160&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">单位充值</a></li>
+
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3870&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">兑换率</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">私人图<span class="arrow">▼</span></a>
+                            <ul>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3330&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">推广图</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3401&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">发展图</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">优先交易计划<span class="arrow">▼</span></a>
+                            <ul>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=9410&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">推广计划</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=9411&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">发展计划</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=9414&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">代数计划</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">积分<span class="arrow">▼</span></a>
+                            <ul>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1120&amp;JdkSeOIUy=1476877861036&amp;ZsnJOI1=157dcc7c0ac&amp;locale=null#">购券分</a>
+                                    <ul>
+                                        <li style="nowrap"><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=21010&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">查看交易明细</a></li>
+                                        <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=21110&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">转让</a></li>
+                                        <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3111490&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">银联充值</a></li>
+                                        <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=311185&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">银联充值列表</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1120&amp;JdkSeOIUy=1476877861036&amp;ZsnJOI1=157dcc7c0ac&amp;locale=null#">优券分</a>
+                                    <ul>
+                                        <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1482000&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">查看交易明细</a></li>
+                                        <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1521000&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">提款</a></li>
+                                        <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1491000&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">转让</a></li>
+                                        <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1528000&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">提款明细</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1120&amp;JdkSeOIUy=1476877861036&amp;ZsnJOI1=157dcc7c0ac&amp;locale=null#">售券分</a>
+                                    <ul>
+                                        <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=14820&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">查看交易明细</a></li>
+                                        <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=15210&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">提款</a></li>
+                                        <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=14910&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">转让</a></li>
+                                        <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=15280&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">提款明细</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1120&amp;JdkSeOIUy=1476877861036&amp;ZsnJOI1=157dcc7c0ac&amp;locale=null#">普通证券</a>
+                                    <ul>
+                                        <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=50010&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">查看交易明细</a></li>
+                                    </ul>
+                                </li>
+                                <li style="display: none">
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1120&amp;JdkSeOIUy=1476877861036&amp;ZsnJOI1=157dcc7c0ac&amp;locale=null#">限制证券</a>
+                                    <ul>
+                                        <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=30010&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">查看交易明细</a></li>
+                                        <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=30030&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">转让</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">交易平台<span class="arrow">▼</span></a>
+                            <ul>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1120011&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">
+                                        交易平台
+                                    </a>
+                                </li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1110003&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">现行指令</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3863&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">交易历史</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">协议书和证书<span class="arrow">▼</span></a>
+                            <ul>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3875&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">协议书</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3876&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">证书</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3883&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">申请证书清单</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3889&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">申请协议书清单</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">布告栏<span class="arrow">▼</span></a>
+                            <ul>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=146&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">布告板查询</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=158&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">下载</a></li>
+
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=2515&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">需求单列表</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">资产<span class="arrow">▼</span></a>
+                            <ul>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=2571&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">中券拍卖</a></li>
+                                <li><a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=2578&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247">拍卖交易记录</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">下载类别<span class="arrow">▼</span></a>
+                            <ul>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1584&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247&amp;Category=PPT">中券课件</a>
+                                </li>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1584&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247&amp;Category=Video">中券视频</a>
+                                </li>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1584&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247&amp;Category=%E6%95%99%E5%AD%A6">中券教学视频</a>
+                                </li>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1584&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247&amp;Category=event">418启动会议</a>
+                                </li>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1584&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247&amp;Category=osaka">516启动会议</a>
+                                </li>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1584&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247&amp;Category=618">618启动会议</a>
+                                </li>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1584&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247&amp;Category=Melak">皇京港项目</a>
+                                </li>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1584&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247&amp;Category=%E4%B8%AD%E5%88%B8%E5%90%AF%E8%88%AA">群星欢聚中券启航</a>
+                                </li>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1584&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247&amp;Category=Cambo">柬埔寨开幕仪式</a>
+                                </li>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1584&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247&amp;Category=918">918</a>
+                                </li>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1584&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247&amp;Category=Corp">中券资本新公司介绍</a>
+                                </li>
+                                <li>
+                                    <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=1584&amp;JdkSeOIUy=1476877861447&amp;ZsnJOI1=157dcc7c247&amp;Category=EOSH">翼陽于凯悦合作介绍</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">报表<span class="arrow">▼</span></a>
+                            <ul>
+                                <li><a href="#">个人业绩报告</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+
+
+        </div>
+        <div id="body-holder">
+            @RenderBody()
+        </div>
+        <div id="bottom-clear"></div>
+        <div class="footer">
+            <div class="inner-foot">
+                Capital Clearance LLC
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
-        </footer>
-    </div>
+    <script language="javascript">
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        viewDoc('https://ccgdisk.blob.core.windows.net/bulletin-doc/DOC_04102016_1475592206498.pdf?sp=r&sr=b&sv=2014-02-14&se=2016-10-19T12%3A06%3A01Z&st=2016-10-19T11%3A51%3A01Z&sig=bQl%2FKPU19EJ5%2Bs4FAbSupYzUxTzY7fx%2Bwu5%2BOZSO8z4%3D', '0');
+
+        alertBulletinKR('http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=3934&JdkSeOIUy=1476877861456&ZsnJOI1=157dcc7c250&Id=4', '1');
+
+
+    </script>
 </body>
 </html>

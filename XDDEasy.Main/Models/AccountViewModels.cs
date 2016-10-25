@@ -57,6 +57,7 @@ namespace XDDEasy.Main.Models
         [Display(Name = "密码")]
         public string Password { get; set; }
 
+        [Required]
         [Display(Name = "验证码")]
         public string Code { get; set; }
 

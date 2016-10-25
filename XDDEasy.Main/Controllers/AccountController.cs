@@ -250,12 +250,68 @@ namespace XDDEasy.Main.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult RegisterProfile()
+        {
+            return View();
+        }
+
         //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new User
+                {
+                    Email = model.Email,
+                    UserName = model.UserName,
+                    TrueName = model.TrueName,
+                    TwoPassword = model.TwoPassword,
+                    PhoneNumber = model.PhoneNumber,
+                    KeyString = "1",
+                    Sex = Convert.ToInt32(model.Sex),
+                    CardNo = model.CardNo,
+                    BirthDay = Convert.ToDateTime(model.BirthDay),
+                    DateApproved = Convert.ToDateTime("1900-1-1"),
+                    Address = model.Address,
+                    ParentNumber = model.ParentNumber,
+                    RecNumber = model.RecNumber,
+                    AgentNumber = model.AgentNumber,
+                    DateAdded = DateTime.Now,
+                    DateUpdated = DateTime.Now,
+                    AddedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                    UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
+                };
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    //添加角色关系
+                    await _userManager.AddToRoleAsync(user.Id, "SystemMember");
+                    await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // 有关如何启用帐户确认和密码重置的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkID=320771
+                    // 发送包含此链接的电子邮件
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "确认你的帐户", "请通过单击 <a href=\"" + callbackUrl + "\">這裏</a>来确认你的帐户");
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            // 如果我们进行到这一步时某个地方出错，则重新显示表单
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterProfile(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {

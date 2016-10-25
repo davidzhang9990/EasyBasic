@@ -1,4 +1,6 @@
-﻿@using XDDEasy.Main.Models
+﻿@using XDDEasy.Domain.ResourceAggregates
+@using XDDEasy.Main.Models
+
 @model LoginViewModel
 @{
     ViewBag.Title = "Index";
@@ -30,7 +32,7 @@
                     <div id="menu-line" style="width: 147px; left: 0px;"></div><div id="menu-button">Menu</div>
                     <ul>
                         <li class="has-sub">
-                            <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=980&amp;JdkSeOIUy=1476879025361&amp;ZsnJOI1=157dcd984d1#"><i class="fa fa-globe"></i> 区域</a>
+                            <a href="#"><i class="fa fa-globe"></i> @EasyResource.Value("UI_LangArea")</a>
                             <ul>
                                 <li>
                                     <a href="javascript:changeLocale(&#39;en_US&#39;)">
@@ -60,7 +62,7 @@
                             <span class="submenu-button"></span>
                         </li>
 
-                        <li><a href="javascript:redirectPubReg()"><i class="fa fa-pencil"></i> 注册</a></li>
+                        <li><a href="/Account/Register"><i class="fa fa-pencil"></i> 注册</a></li>
                     </ul>
                 </div>
                 <div style="clear:both"></div>
@@ -80,17 +82,23 @@
 
                         @Html.LabelFor(m => m.UserName)
                         @Html.TextBoxFor(m => m.UserName, new { @class = "form-bx" })
-                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "form-horizontal text-danger" })
-                        <br/>
+
                         @Html.LabelFor(m => m.Password)
                         @Html.PasswordFor(m => m.Password, new { @class = "form-bx" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "form-horizontal text-danger" })
-                        <br />
+
                         @Html.LabelFor(m => m.Code)
                         @Html.TextBoxFor(m => m.Code, new { @class = "form-bx" })
-                        @Html.ValidationMessageFor(m => m.Code, "", new { @class = "form-horizontal text-danger" })
 
-                        @Html.ValidationSummary(true, "", new { @class = "form-horizontal text-danger" })
+
+                        <div style="color: red;">
+                            @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "form-horizontal text-danger" })
+                            <br />
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "form-horizontal text-danger" })
+                            <br />
+                            @Html.ValidationMessageFor(m => m.Code, "", new { @class = "form-horizontal text-danger" })
+                            @Html.ValidationSummary(true, "", new { @class = "form-horizontal text-danger" })
+                        </div>
+
 
                         <input type="submit" value="登录" class="sub-bt" />
                     </div>
