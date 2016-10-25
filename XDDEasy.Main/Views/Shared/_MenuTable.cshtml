@@ -1,5 +1,6 @@
-﻿<div class="sidebar-nav">
-    <a href="/" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>后台首页</a>
+﻿@using XDDEasy.Domain.ResourceAggregates
+<div class="sidebar-nav">
+    <a href="/" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>@EasyResource.Value("UI_Home")</a>
 
     <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>会员管理<i class="icon-chevron-up"></i></a>
     <ul id="accounts-menu" class="nav nav-list collapse in">
@@ -29,10 +30,10 @@
         <li><a href="terms-and-conditions.html">操作日志</a></li>
     </ul>
 
-    <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-legal"></i>资源管理<i class="icon-chevron-up"></i></a>
+    <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-legal"></i>@EasyResource.Value("UI_Resource_Manage")<i class="icon-chevron-up"></i></a>
     <ul id="legal-menu" class="nav nav-list collapse in">
-        <li><a href="/Admin/Resource">资源列表</a></li>
-        <li><a href="terms-and-conditions.html">添加资源</a></li>
+        <li><a href="/Admin/Resource">@EasyResource.Value("UI_Resource_Manage")</a></li>
+        <li><a href="/Admin/Resource/Edit">@EasyResource.Value("UI_Add_Resource")</a></li>
     </ul>
 
     <a href="help.html" class="nav-header"><i class="icon-question-sign"></i>Help</a>

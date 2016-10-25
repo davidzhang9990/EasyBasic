@@ -1,6 +1,7 @@
 ﻿@using Common.Helper
 @using Common.Models
 @using Microsoft.AspNet.Identity
+@using XDDEasy.Domain.ResourceAggregates
 
 <!DOCTYPE html>
 <html>
@@ -39,6 +40,8 @@
             }
     </style>
 
+    @Styles.Render("~/css/styles/common")
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -61,8 +64,13 @@
     <div class="navbar">
         <div class="navbar-inner">
             <ul class="nav pull-right">
-
-                <li><a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">Settings</a></li>
+                <li style="padding: 5px;">
+                    <select id="easyLanguage" style="width: 100px;" onchange="app.setLanguae('@LangHelper.EQ_LANGUAGE_KEY', this.value, true)">
+                        <option value="en-US">英文</option>
+                        <option value="zh-CN">中文</option>
+                    </select>
+                </li>
+                <li><a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">@EasyResource.Value("UI_Settings")</a></li>
                 <li id="fat-menu" class="dropdown">
                     <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-user"></i>@string.Format("{0}", ClaimHelper.GetClaimValue(EasyClaimType.UserName))
@@ -70,16 +78,16 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href="#">My Account</a></li>
+                        <li><a tabindex="-1" href="#">@EasyResource.Value("UI_Account")</a></li>
                         <li class="divider"></li>
-                        <li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>
+                        <li><a tabindex="-1" class="visible-phone" href="#">@EasyResource.Value("UI_Settings")</a></li>
                         <li class="divider visible-phone"></li>
-                        <li><a tabindex="-1" href="/Account/LogOut">注销</a></li>
+                        <li><a tabindex="-1" href="/Account/LogOut">@EasyResource.Value("UI_LogOut")</a></li>
                     </ul>
                 </li>
 
             </ul>
-            <a class="brand" href="index.html"><span class="first">Your</span> <span class="second">Company</span></a>
+            <a class="brand" href="index.html"><span class="first">@EasyResource.Value("UI_SiteTitle")</span><span class="second">@EasyResource.Value("UI_SiteName")</span></a>
         </div>
     </div>
 
@@ -94,5 +102,14 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("ScriptSection", false)
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var lan = app.getCookie('@LangHelper.EQ_LANGUAGE_KEY');
+            $("#easyLanguage").val(lan);
+        });
+
+
+    </script>
 </body>
 </html>

@@ -46,7 +46,6 @@ namespace XDDEasy.Main.Controllers
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
-
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)

@@ -8,21 +8,21 @@
 
 <div class="header">
 
-    <h1 class="page-title">资源管理</h1>
+    <h1 class="page-title">@EasyResource.Value("UI_Resource_Manage")</h1>
 </div>
 
 <ul class="breadcrumb">
-    <li><a href="/Admin/Member">首页</a> <span class="divider">/</span></li>
-    <li class="active">资源管理</li>
+    <li><a href="/Admin/Member">@EasyResource.Value("UI_Home")</a> <span class="divider">/</span></li>
+    <li class="active">@EasyResource.Value("UI_Resource_Manage")</li>
 </ul>
 
 <div class="container-fluid">
     <div class="row-fluid">
 
         <div class="btn-toolbar">
-            <button class="btn btn-primary"><i class="icon-plus"></i>添加资源</button>
-            <button class="btn">导入</button>
-            <button class="btn">导出</button>
+            <button class="btn btn-primary" onclick="javascript: addResource();"><i class="icon-plus"></i>@EasyResource.Value("UI_Add_Resource")</button>
+            <button class="btn">@EasyResource.Value("UI_Import")</button>
+            <button class="btn">@EasyResource.Value("UI_Export")</button>
             <div class="btn-group">
             </div>
         </div>
@@ -30,10 +30,11 @@
             <table class="table responsive-table responsive-table-on" id="resource-table">
                 <thead>
                     <tr>
-                        <th>序号</th>
-                        <th>资源名称</th>
-                        <th>资源内容</th>
-                        <th>资源语言</th>
+                        <th>@EasyResource.Value("UI_Resource_Name")</th>
+                        <th>@EasyResource.Value("UI_Resource_Value")</th>
+                        <th>@EasyResource.Value("UI_Culture")</th>
+                        <th>@EasyResource.Value("UI_Resource_Group")</th>
+                        <th>@EasyResource.Value("UI_UpdatedTime")</th>
                         <th style="width: 100px;"></th>
                     </tr>
                 </thead>
@@ -77,155 +78,123 @@
     @Scripts.Render("~/bundles/libs/lodash")
     <script>
 
-    var table, contentsUI;
+        var table, contentsUI;
 
-    newUrl = function () {
-        return "/api/resource/paging";
-    };
+        newUrl = function () {
+            return "/api/resource/paging";
+        };
 
-    freshData = function () {
-        if (table) {
-            table.fnReloadAjax(newUrl());
-            table.fnPageChange('first');
-        }
-    };
+        freshData = function () {
+            if (table) {
+                table.fnReloadAjax(newUrl());
+                table.fnPageChange('first');
+            }
+        };
 
-    $(document).ready(function () {
-        loadTable();
-    });
+        $(document).ready(function () {
+            loadTable();
+        });
 
-    loadTable = function () {
-        table = $('#resource-table').dataTable({
-            "oLanguage": {
-                "sUrl": "/lib/datatables/i18n/en-us.js"
-            },
-            "sPaginationType": "full_numbers",
-            "bAutoWidth": true,
-            "aLengthMenu": [10, 20, 50, 100, 200],
+        loadTable = function () {
+            table = $('#resource-table').dataTable({
+                "oLanguage": {
+                    "sUrl": "/lib/datatables/i18n/en-us.js"
+                },
+                "sPaginationType": "full_numbers",
+                "bAutoWidth": true,
+                "aLengthMenu": [10, 20, 50, 100, 200],
 
-            'sDom': '<"dataTables_header"lfr>t<"dataTables_footer"ip>',
+                'sDom': '<"dataTables_header"lfr>t<"dataTables_footer"ip>',
 
-            "bProcessing": true,
-            "bServerSide": true,
-            "bStateSave": true,
-            "aaSorting": [[1, 'desc']],
+                "bProcessing": true,
+                "bServerSide": true,
+                "bStateSave": true,
+                "aaSorting": [[5, 'desc']],
 
-            "sAjaxSource": newUrl(),
-            "aoColumns": [
+                "sAjaxSource": newUrl(),
+                "aoColumns": [
+                   {
+                       mData: "name",
+                       sTitle: "@EasyResource.Value("UI_Resource_Name")",
+                       sType: "string",
+                       mSearchOptions: { bOutTable: false },
+                       bSearchable: true
+                   },
                 {
-                    mData: "id",
-                    sTitle: "序号",
+                    mData: "value",
+                    sTitle: "@EasyResource.Value("UI_Resource_Value")",
                     sType: "string",
                     mSearchOptions: { bOutTable: false },
-                    mOrder: "Id"
+                    bSearchable: false
                 },
-               {
-                   mData: "name",
-                   sTitle: "资源名称",
-                   sType: "string",
-                   mSearchOptions: { bOutTable: false },
-                   bSearchable: false,
-                   bSortable: false
-               },
-            {
-                mData: "value",
-                sTitle: "资源内容",
-                sType: "string",
-                mSearchOptions: { bOutTable: false },
-                bSearchable: false
-            },
-            {
-                mData: "culture",
-                sTitle: "语言",
-                sType: "string",
-                mSearchOptions: { bOutTable: false },
-                bSearchable: false
-            },
-            {
-                mData: "id",
-                bSortable: false,
-                bSearchable: false,
-                mRender: function (oObj, sVal, tea) {
-                    var html;
-                    html = "<span class=\"button-group compact\">";
-                    html = html + "<a title=\"@EasyResource.Value("UI_Edit")\" class=\"button  with-tooltip\" href=\"javascript:void('0');\" onclick=\"javascript: editResource('" + oObj + "');\">@EasyResource.Value("UI_Edit")</a> | ";
-                    html = html + "<a title=\"@EasyResource.Value("UI_Delete")\" class=\"button with-tooltip\" href=\"javascript:void('0');\" onclick=\"javascript: deleteResource('" + oObj + "');\">@EasyResource.Value("UI_Delete")</a>";
-                    html = html + "</span>";
-                    return html;
-                }
-            }
-            ],
-            "fnServerData": fnServerOData,
-            "bUseODataViaJSONP": false
-        });
-    };
-
-    function clearStudentTable() {
-        $('tbody').html("");
-    }
-
-    function deleteStudent(id) {
-        var delStudent = function (id) {
-            $.ajax(
-            {
-                type: 'DELETE',
-                url: "/api/student/" + id,
-                beforeSend: function (XMLHttpRequest) {
+                {
+                    mData: "culture",
+                    sTitle: "@EasyResource.Value("UI_Culture")",
+                    sType: "string",
+                    mSearchOptions: { bOutTable: false },
+                    bSearchable: false
                 },
-                success: function (result) {
-                    freshData();
+                {
+                    mData: "group",
+                    sTitle: "@EasyResource.Value("UI_Resource_Group")",
+                    sType: "string",
+                    mSearchOptions: { bOutTable: false },
+                    bSearchable: false
+                },
+                {
+                    mData: "dateUpdated",
+                    sTitle: "@EasyResource.Value("UI_UpdatedTime")",
+                    sType: "date",
+                    mRender: function (oObj, sVal) {
+                        return FormatDate(oObj, "MM/dd/yyyy hh:mm");
+                    }
+                },
+                {
+                    mData: "id",
+                    bSortable: false,
+                    bSearchable: false,
+                    mRender: function (oObj, sVal, tea) {
+                        var html;
+                        html = "<span class=\"button-group compact\">";
+                        html = html + "<a title=\"@EasyResource.Value("UI_Edit")\" class=\"button  with-tooltip\" href=\"javascript:void('0');\" onclick=\"javascript: editResource('" + oObj + "');\">@EasyResource.Value("UI_Edit")</a> | ";
+                        html = html + "<a title=\"@EasyResource.Value("UI_Delete")\" class=\"button with-tooltip\" href=\"javascript:void('0');\" onclick=\"javascript: deleteResource('" + oObj + "');\">@EasyResource.Value("UI_Delete")</a>";
+                        html = html + "</span>";
+                        return html;
+                    }
                 }
+                ],
+                "fnServerData": fnServerOData,
+                "bUseODataViaJSONP": false
             });
         };
-        confirmMsgModal("@EasyResource.Value("UI_MsgTitle_DeleteStudent")", "@EasyResource.Value("UI_MsgContent_DeleteStudent")", delStudent, function () { }, id);
-    }
 
-    /*****paging function end********/
-    /********************************/
-
-    function editResource(id) {
-        window.location.href = "/Admin/Resource/Edit/" + id;
-    }
-
-    var resetPasswordForm;
-
-    function resetPassword(userName) {
-        resetPasswordForm = popWin('/account/ResetPassword?userName=' + userName, '@EasyResource.Value("UI_MsgTitle_ResetPassword")', 600, 400);
-    }
-
-    function viewCertificates(studentId) {
-        popWin('/teacher/student/viewcertificates?studentId=' + studentId, '@EasyResource.Value("UI_MsgTitle_ViewCertificates")', 800, 600);
-    }
-
-    function closeResetPaswordForm() {
-        resetPasswordForm.closeModal();
-    }
-
-    function createStudent() {
-        if ($.userInfo.roles[0] === $.roleEnum.RegisteredTeacher) {
-            var limitCount = 0, studentCount = 0;
-            app.ajax.getSync("/api/student/count",
-                function (result) {
-                    if (result) {
-                        studentCount = result;
-                    }
-                });
-            app.ajax.getSync("/api/profile/BasicAccountStudentCountLimit",
-                function (result) {
-                    if (result) {
-                        limitCount = parseInt(result.value);
-                    }
-                });
-
-            if (limitCount !== 0 && studentCount >= limitCount) {
-                msgModal3("@EasyResource.Value("UI_MsgContent_OnlyCreateLimitBasicUser")".format(limitCount));
-                return;
-            }
+        function clearStudentTable() {
+            $('tbody').html("");
         }
-        window.location.href = "/teacher/student/create";
-    }
 
+        function addResource() {
+            window.location.href = "/Admin/Resource/Edit";
+        }
 
+        function deleteResource(id) {
+            var delResource = function (id) {
+                $.ajax(
+                {
+                    type: 'DELETE',
+                    url: "/api/Resource/" + id,
+                    beforeSend: function (XMLHttpRequest) {
+                    },
+                    success: function (result) {
+                        freshData();
+                    }
+                });
+            };
+            confirmMsgModal("@EasyResource.Value("UI_MsgTitle_DeleteStudent")", "@EasyResource.Value("UI_MsgContent_DeleteStudent")", delResource, function () { }, id);
+        }
+
+        function editResource(id) {
+            window.location.href = "/Admin/Resource/Edit?id=" + id;
+        }
     </script>
 }
 

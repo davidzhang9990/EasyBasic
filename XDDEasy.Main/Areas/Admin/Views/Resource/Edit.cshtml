@@ -3,14 +3,13 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="header">
-
-    <h1 class="page-title">修改资源</h1>
+    <h1 class="page-title"></h1>
 </div>
 
 <ul class="breadcrumb">
-    <li><a href="/Admin/Member">后台首页</a> <span class="divider">/</span></li>
-    <li><a href="/Admin/Resource">资源管理</a> <span class="divider">/</span></li>
-    <li class="active">修改资源</li>
+    <li><a href="/Admin/Member">@EasyResource.Value("UI_Home")</a> <span class="divider">/</span></li>
+    <li><a href="/Admin/Resource">@EasyResource.Value("UI_Resource_Manage")</a> <span class="divider">/</span></li>
+    <li class="active"><span id="spTitle"></span></li>
 </ul>
 
 <div class="container-fluid">
@@ -19,24 +18,26 @@
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane active in" id="home">
                     <form id="tab">
-                        <label>名称</label>
-                        <input type="text" value="jsmith" class="input-xlarge">
-                        <label>内容</label>
-                        <input type="text" value="John" class="input-xlarge">
-                        <label>语言</label>
-                        <select name="dculture" id="dculture" class="input-xlarge">
-                            <option value="en-us">英文</option>
-                            <option value="zh-Hans">中文</option>
+                        <label>@EasyResource.Value("UI_Resource_Name")</label>
+                        <input type="text" id="txtName" class="input input-xlarge validate[required,ajax[ajaxCall]]">
+                        <label>@EasyResource.Value("UI_Resource_Value")</label>
+                        <input type="text" id="txtValue" class="input input-xlarge validate[required,ajax[ajaxCall]]">
+                        <label>@EasyResource.Value("UI_Culture")</label>
+                        <select name="ddlculture" id="ddlculture" class="input-xlarge">
+                            <option value="en-US">英文</option>
+                            <option value="zh-CN">中文</option>
                         </select>
-                        <label>类型</label>
-                        <select name="dtype" id="dtype" class="input-xlarge">
+                        <label>@EasyResource.Value("UI_Resource_Group")</label>
+                        <select name="ddltype" id="ddltype" class="input-xlarge">
                             <option value="UI">前台</option>
                             <option value="BackEnd">后台</option>
                         </select>
                     </form>
 
-                    <button class="btn btn-primary"><i class="icon-save"></i> Save</button>
-                    <a href="#myModal" data-toggle="modal" class="btn">Delete</a>
+                    <button class="btn btn-primary" id="btnSave"><i class="icon-save"></i> @EasyResource.Value("UI_Save")</button>
+                    <a href="#myModal" data-toggle="modal" class="btn">@EasyResource.Value("UI_Canel")</a>
+
+                    <input id="hidId" type="hidden" value="" />
                 </div>
 
             </div>
@@ -44,12 +45,103 @@
         </div>
         <footer>
             <hr>
+            <p class="pull-right">
+                Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+            </p>
 
-
-            <p class="pull-right">Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-
-            <p>&copy; 2012 <a href="#" target="_blank">Portnine</a></p>
+            <p>
+                &copy; 2012 <a href="#" target="_blank">Portnine</a>
+            </p>
         </footer>
 
     </div>
 </div>
+
+@section ScriptSection
+{
+    @Scripts.Render("~/bundles/formCommon")
+
+    <script type="text/javascript">
+
+        var editResourceId = getQueryParamValue("id");
+
+        //alert(editResourceId);
+        loadResource = function (editResourceId) {
+            app.ajax.get("/api/Resource/" + editResourceId, true, function (data) {
+                setResourceInfo(data);
+            });
+        };
+
+        $(document).ready(function () {
+            if (editResourceId) {
+                $("#hidId").val(editResourceId);
+                loadResource(editResourceId);
+            } else {
+                setResourceInfo();
+            }
+            $('form').validationEngine();
+        });
+
+        setResourceInfo = function (resource) {
+
+            if (editResourceId && resource) {
+
+                $("#spTitle").text("@EasyResource.Value("UI_Edit_Resource")");
+                $(".page-title")[0].innerText = "@EasyResource.Value("UI_Edit_Resource")";
+
+                $("#txtName").val(resource.name);
+                $("#txtValue").val(resource.value);
+                $("#ddlculture").val(resource.culture);
+                $("#ddltype").val(resource.group);
+            } else {
+                $("#spTitle").text("@EasyResource.Value("UI_Add_Resource")");
+                $(".page-title")[0].innerText = "@EasyResource.Value("UI_Add_Resource")";
+            }
+        };
+
+        document.getElementById("btnSave").onclick = function () {
+            var result = $('form').validationEngine('validate');
+            if (!result) {
+                return;
+            }
+
+            var resource = {
+                "Name": $("#txtName").val(),
+                "Value": $('#txtValue').val(),
+                "Culture": $('#ddlculture').val(),
+                "Group": $('#ddltype').val(),
+                "Type": "String"
+            };
+
+            var createOrUpdateUrl = "/api/Resource", type;
+            if (editResourceId) {
+                createOrUpdateUrl = createOrUpdateUrl + "/" + editResourceId;
+                type = "PUT";
+            } else {
+                type = "POST";
+            }
+
+            $.ajax({
+                type: type,
+                url: createOrUpdateUrl,
+                data: JSON.stringify(resource),
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    $("#btnSave").prop("disabled", "disabled");
+                },
+                success: function (results, textStatus) {
+                    redirectToIndex();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    $("#btnSave").prop("disabled", "");
+                }
+            });
+        };
+
+        //document.getElementById("btnCancle").onclick = redirectToIndex;
+
+        function redirectToIndex() {
+            window.location = "/Admin/Resource";
+        }
+    </script>
+}

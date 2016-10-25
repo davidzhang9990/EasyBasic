@@ -571,6 +571,7 @@ namespace XDDEasy.Main.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         public ActionResult LogOut()
         {
             _authenticationManager.SignOut();

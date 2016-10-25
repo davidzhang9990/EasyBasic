@@ -8,8 +8,8 @@ namespace XDDEasy.Main
         // 有关绑定的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            RegisterScripts(bundles);
+            RegisterStyles(bundles);
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -25,7 +25,24 @@ namespace XDDEasy.Main
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css"));
+        }
 
+        public static void RegisterScripts(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/bundles/formCommon").Include(
+               "~/js/libs/formValidator/jquery.validationEngine.js",
+               "~/js/libs/formValidator/languages/jquery.validationEngine-en.js"
+               ));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                   "~/Scripts/jquery-{version}.js",
+                   "~/scripts/customize/common.js"
+           ));
+
+            bundles.Add(new ScriptBundle("~/bundles/formCommon").Include(
+               "~/lib/formValidator/jquery.validationEngine.js",
+               "~/lib/formValidator/languages/jquery.validationEngine-en.js"
+               ));
 
             bundles.Add(new ScriptBundle("~/bundles/IndexCommon").Include(
                        "~/lib/pagination/jquery.pagination.js",
@@ -43,13 +60,25 @@ namespace XDDEasy.Main
             bundles.Add(new ScriptBundle("~/bundles/libs/lodash").Include(
                        "~/lib/lodash/lodash.underscore.min.js"));
 
+        }
+
+        public static void RegisterStyles(BundleCollection bundles)
+        {
             bundles.Add(new StyleBundle("~/lib/pagination/pagination").Include(
-                       "~/lib/pagination/pagination.css"
-                       ));
+                     "~/lib/pagination/pagination.css"
+                     ));
 
             bundles.Add(new StyleBundle("~/lib/DataTables/dataTables").Include(
                       "~/lib/DataTables/jquery.dataTables-simple.css"
                        ));
+
+            bundles.Add(new StyleBundle("~/css/styles/common").Include(
+                        "~/lib/formValidator/eq.validationEngine.css"
+                        ));
+
         }
+
+
+
     }
 }
