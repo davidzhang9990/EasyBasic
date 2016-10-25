@@ -60,25 +60,12 @@ namespace XDDEasy.Main.Controllers
             _log = log;
         }
 
-        //
-        // GET: /Account/Login
+        //登录页面
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Index(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
-        }
-
-        [AllowAnonymous]
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        //管理后台首页
-        public ActionResult MIndex()
-        {
-            return View("_MIndex");
         }
 
         //
@@ -90,7 +77,7 @@ namespace XDDEasy.Main.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("Index", model);
             }
 
             var user = _userManager.FindByName(model.UserName);
@@ -113,13 +100,13 @@ namespace XDDEasy.Main.Controllers
                     return GetActionResultAfterAuthenticated(model.UserName);
                     //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
-                    return View("Lockout");
+                    return View("Index", "Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "无效的登录尝试。");
-                    return View(model);
+                    return View("Index", model);
             }
         }
 

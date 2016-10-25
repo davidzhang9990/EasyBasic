@@ -11,31 +11,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript">
-        function changeLocale(localeText) {
-            document.login.agp.value = "";
-            document.login.DkO02Ile.value = localeText;
-            document.login.locale.value = localeText;
-            document.login.method = "POST";
-            document.login.action = "http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=980&JdkSeOIUy=1476879042366&ZsnJOI1=157dcd9c73e";
-            document.login.submit();
-        }
-        function refreshCode() {
-            document.login.coderefresh.value = "true";
-            document.login.method = "POST";
-            document.login.action = "http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=990&JdkSeOIUy=1476879042366&ZsnJOI1=157dcd9c73e";
-            document.login.submit();
-        }
-        function redirectPubReg() {
-            document.login.method = "POST";
-            document.login.action = "http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=37100&JdkSeOIUy=1476879042366&ZsnJOI1=157dcd9c73e";
-            document.login.submit();
-        }
-        /*function doSubmitPublic(){
-          document.forms[1].submit();
-        }*/
-    </script>
-    <title>Capital Clearance LLC</title>
+    <title>XXX会员系统</title>
     <link rel="stylesheet" type="text/css" href="~/css/ccgs.css">
     <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -97,16 +73,24 @@
                 {
                     <div style="padding:1em; ">
                         @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true, "", new { @class = "form-horizontal text-danger" })
+
                         <h2 style="padding: 0; margin: 0;">在线 - XXXXXX集团</h2>
                         <p style="color: #999; margin: 0; padding: 0.5em 0;">您的私人在线管理系统。</p>
                         <div style="border-bottom: 8px groove #F00; width: 100%; height: 5px; margin-bottom: 2em;"></div>
 
                         @Html.LabelFor(m => m.UserName)
                         @Html.TextBoxFor(m => m.UserName, new { @class = "form-bx" })
-
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "form-horizontal text-danger" })
+                        <br/>
                         @Html.LabelFor(m => m.Password)
                         @Html.PasswordFor(m => m.Password, new { @class = "form-bx" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "form-horizontal text-danger" })
+                        <br />
+                        @Html.LabelFor(m => m.Code)
+                        @Html.TextBoxFor(m => m.Code, new { @class = "form-bx" })
+                        @Html.ValidationMessageFor(m => m.Code, "", new { @class = "form-horizontal text-danger" })
+
+                        @Html.ValidationSummary(true, "", new { @class = "form-horizontal text-danger" })
 
                         <input type="submit" value="登录" class="sub-bt" />
                     </div>
