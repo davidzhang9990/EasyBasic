@@ -14,5 +14,10 @@ namespace XDDEasy.Main.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public ActionResult Edit()
+        {
+            return View();
+        }
     }
 }

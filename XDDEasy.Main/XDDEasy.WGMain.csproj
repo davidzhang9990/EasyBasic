@@ -532,6 +532,7 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Areas\Admin\Views\Resource\Index.cshtml" />
     <Content Include="lib\DataTables\package.json" />
+    <Content Include="Areas\Admin\Views\Resource\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\customize\customizePaging.js" />
     <Content Include="Scripts\customize\jquery.dataTables.custom.js" />

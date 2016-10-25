@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="header">
+
+    <h1 class="page-title">修改资源</h1>
+</div>
+
+<ul class="breadcrumb">
+    <li><a href="/Admin/Member">后台首页</a> <span class="divider">/</span></li>
+    <li><a href="/Admin/Resource">资源管理</a> <span class="divider">/</span></li>
+    <li class="active">修改资源</li>
+</ul>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="well">
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active in" id="home">
+                    <form id="tab">
+                        <label>名称</label>
+                        <input type="text" value="jsmith" class="input-xlarge">
+                        <label>内容</label>
+                        <input type="text" value="John" class="input-xlarge">
+                        <label>语言</label>
+                        <select name="dculture" id="dculture" class="input-xlarge">
+                            <option value="en-us">英文</option>
+                            <option value="zh-Hans">中文</option>
+                        </select>
+                        <label>类型</label>
+                        <select name="dtype" id="dtype" class="input-xlarge">
+                            <option value="UI">前台</option>
+                            <option value="BackEnd">后台</option>
+                        </select>
+                    </form>
+
+                    <button class="btn btn-primary"><i class="icon-save"></i> Save</button>
+                    <a href="#myModal" data-toggle="modal" class="btn">Delete</a>
+                </div>
+
+            </div>
+
+        </div>
+        <footer>
+            <hr>
+
+
+            <p class="pull-right">Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+
+            <p>&copy; 2012 <a href="#" target="_blank">Portnine</a></p>
+        </footer>
+
+    </div>
+</div>
