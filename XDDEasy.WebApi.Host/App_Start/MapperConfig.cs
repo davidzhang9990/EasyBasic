@@ -45,8 +45,8 @@ namespace XDDEasy.WebApi.Host
 
         private static void ResourceMappings()
         {
-            //Mapper.CreateMap<ResourceRequest, Resource>();
-            //Mapper.CreateMap<Resource, ResourceResponse>();
+            Mapper.CreateMap<ResourceRequest, Resource>();
+            Mapper.CreateMap<Resource, ResourceResponse>();
         }
     }
 }

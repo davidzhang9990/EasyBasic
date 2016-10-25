@@ -25,6 +25,31 @@ namespace XDDEasy.Main
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/IndexCommon").Include(
+                       "~/lib/pagination/jquery.pagination.js",
+                       "~/lib/spin.min.js",
+                       "~/scripts/customize/customizePaging.js"
+           ));
+
+            bundles.Add(new ScriptBundle("~/bundles/dataTables").Include(
+               "~/lib/DataTables/jquery.dataTables.js",
+               "~/lib/DataTables/jquery.dataTables.rowReordering.js",
+               "~/scripts/customize/jquery.dataTables.odata.js",
+               "~/scripts/customize/jquery.dataTables.custom.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/libs/lodash").Include(
+                       "~/lib/lodash/lodash.underscore.min.js"));
+
+            bundles.Add(new StyleBundle("~/lib/pagination/pagination").Include(
+                       "~/lib/pagination/pagination.css"
+                       ));
+
+            bundles.Add(new StyleBundle("~/lib/DataTables/dataTables").Include(
+                      "~/lib/DataTables/jquery.dataTables-simple.css"
+                       ));
         }
     }
 }
