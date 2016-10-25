@@ -531,7 +531,6 @@
     <Content Include="Views\Account\_MIndex.cshtml" />
     <Content Include="Views\Shared\_MenuTable.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\Account\LogOff.cshtml" />
     <Content Include="Views\Account\LogOut.cshtml" />
   </ItemGroup>
   <ItemGroup>

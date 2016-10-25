@@ -344,10 +344,10 @@ namespace XDDEasy.Main.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByNameAsync(model.Email);
+                var user = await _userManager.FindByEmailAsync(model.Email);
                 if (user == null || !(await _userManager.IsEmailConfirmedAsync(user.Id)))
                 {
-                    // 请不要显示该用户不存在或者未经确认
+                    //当用户不存在或者未确认时，直接跳转到确认发送页面
                     return View("ForgotPasswordConfirmation");
                 }
 
@@ -525,16 +525,6 @@ namespace XDDEasy.Main.Controllers
 
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
-        }
-
-        //
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
-        {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult LogOut()

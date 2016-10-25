@@ -82,16 +82,16 @@
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, "", new { @class = "form-horizontal text-danger" })
-                        
+
                         @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "form-horizontal text-danger" })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "form-horizontal text-danger" })
 
                         @Html.LabelFor(m => m.UserName)
                         @Html.TextBoxFor(m => m.UserName, new { @class = "span12" })
-                        
+
                         @Html.LabelFor(m => m.Password)
                         @Html.PasswordFor(m => m.Password, new { @class = "span12" })
-                        
+
                         <input type="submit" value="登录" class="btn btn-primary pull-right" />
                         <label class="remember-me">@Html.CheckBoxFor(m => m.RememberMe) Remember me</label>
                         <div class="clearfix"></div>
@@ -100,7 +100,7 @@
             </div>
             <p class="pull-right" style=""><a href="#" target="blank">Theme by Portnine</a></p>
             <p>
-                @Html.ActionLink("忘记了密码?", "Forgot your password?")
+                @Html.ActionLink("忘记了密码?", "ForgotPassword", "Account")
             </p>
         </div>
     </div>
