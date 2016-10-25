@@ -1,0 +1,349 @@
+﻿@charset "UTF-8";
+/* CCG Style */
+
+body{background: url(../img/bg-2.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; padding:0; margin:0;
+margin: 0;
+padding: 0;}
+
+img{
+	margin: 0;
+	padding: 0;
+}
+
+#main-hol {
+	width:100%;
+	height:auto;
+}
+
+#main-hol .header {
+	background-color:#000;
+	border-bottom:5px solid #FF0000;
+	width:100%;
+	height:100px;
+	float:left;
+}
+
+#main-hol .ccg-logo{ width:100%; float: left; height:inherit; margin:0 auto; text-align: left;}
+#main-hol .ccg-logo img {margin-top:0.8em; margin-left: 2em; margin-bottom: 0em;}
+
+#main-hol .menu { position:inherit; float:right; margin-top: 25px;}
+#main-hol .menu ul { width:100%; height:inherit;}
+#main-hol .menu a:hover {background:#F00;}
+#main-hol .menu li { display:inline;}
+#main-hol .menu a{ padding:2.8em 1.8em; text-decoration:none; color:#fff;}
+#main-hol .menu ul li ul {
+	list-style: none;
+    margin: 0;
+    padding: 0;    
+	visibility:hidden;
+    position: absolute;
+    z-index: 99999;
+	width:180px;
+	top:96px;
+	background:#f8f8f8;
+	opacity:0;
+	-webkit-transition:opacity 0.2s linear, visibility 0.2s linear; 
+	-moz-transition:opacity 0.2s linear, visibility 0.2s linear; 
+	-o-transition:opacity 0.2s linear, visibility 0.2s linear; 
+	transition:opacity 0.2s linear, visibility 0.2s linear; 
+	}
+#main-hol .menu ul li:hover > ul {
+	visibility:visible;
+	opacity:1;
+}
+
+#main-hol .menu ul ul{top:5em;}
+#main-hol .menu ul ul li{ 
+    clear:both;
+	width:100%;
+	height:55px;
+	border:0 none;
+	border-bottom:1px solid #c9c9c9;
+}
+#main-hol .menu ul ul li a{
+	background:none;
+	padding:10px 15px;
+	color:#616161;
+	text-decoration:none;
+	display:inline-block;
+	border:0 none;
+	float:left;
+	clear:both;
+	width:150px;
+}
+#main-hol .menu ul ul li a:hover{ color:#FFF;}
+.red{background:#F00;}
+#main-hol .body-ctxt{
+	/*width:90%;
+	margin:0 auto;
+	float:left;*/
+	width:350px;
+	margin:0 auto;
+	float:right;
+}
+#main-hol .login-bx { 
+	background:rgba(100%,100%,100%,0.7); 
+	border-radius: 1em; 
+	box-shadow:0px 0px 11px #666; 
+	width: 350px;
+	margin-top: 2em; 
+	float: right;
+	margin-right: 1em;
+}
+
+#main-hol .footer{
+	background-color:rgba(0,0,0,0.4);
+	color:#FFF;
+	width:100%;
+	/*margin-top: 10px;
+	text-align:right;*/
+	position: fixed;
+	bottom: 0;
+    margin-top: 20px;
+}
+#main-hol .inner-foot {padding:0.5em 6em;}
+
+.form-bx {width:95%; margin:0.5em 0; padding:10px 2%; font-size:16px;}
+.sub-bt {width:100%; height:40px; font-size:16px; background:#F00; margin:2em 0 1em 0; color:#fff; border:0; cursor:pointer;}
+.sub-bt:hover { background:#C00;}
+
+.register_warp{
+	width: 660px;
+	height: 300px;
+	margin: 0 auto;
+}
+
+select{
+	outline: none;
+	border:1px solid #ccc;
+	border-radius: 3px;
+	padding: 5px;
+}
+
+input{
+	outline: none;
+	border:1px solid #ccc;
+	border-radius: 3px;
+	padding: 5px;
+}
+
+.done{
+	width: 98%;
+	background: #fff;
+	height: 50px;
+	box-shadow: 0px 0px 4px #999;
+	padding: 10px 10px 10px 0px;
+	border-left: 10px solid #84c625;
+}
+
+
+
+.done p{
+	float: left;
+	padding-top: 20px;
+	font-size: 12px;
+	margin-left: 10px;
+}
+
+
+.close_btn{
+	width: 22px;
+	height: 18px;
+	background: #fc3939;
+	border-radius: 5px;
+	float: right;
+	padding-top:4px;
+	cursor: pointer;
+	color: #fff;
+	font-weight: bold;
+	box-shadow: 0px 0px 3px #ddd;
+	text-align: center;
+	font-size: 12px;
+}
+
+.close_btn:hover{
+	background: #d10e0e;
+}
+
+.container{
+	width: 100%;
+}
+
+.col{
+	width: 98%;
+	box-shadow: 0px 0px 4px #999;
+	background: #fff;
+	margin-top: 20px;
+	padding: 10px 10px 15px 10px;
+}
+
+.container h1{
+	font-size: 16px;
+	font-weight: bold;
+	color: #e41c27;
+	margin: 0px 0px 5px 0px;
+	padding-bottom: 5px;
+	border-bottom:1px solid #cccccc;
+}
+
+.container h1 small{
+	font-size: 10px;
+	color: #666;
+}
+
+.col table{
+	width: 40%;
+	float: left;
+	margin-right: 20px;
+	margin-left: 30px;
+}
+
+.container table td{
+	width: 50%;
+	font-size: 12px;
+	padding-top:10px;
+}
+
+.container table select{
+    padding:7px 5px 5px 5px;
+    margin: 0;
+    background: url(../img/dropdown-arrow.png) no-repeat right 7px #fff;
+    color:#888;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+.col_left{
+	width: 47%;
+	box-shadow: 0px 0px 4px #999;
+	background: #fff;
+	margin-top: 18px;
+	padding: 10px 10px 15px 10px;
+	float: left;
+}
+
+.col_left table{
+	width: 94%;
+	float: left;
+	margin-right: 40px;
+}
+
+.col_right{
+	width: 47%;
+	box-shadow: 0px 0px 4px #999;
+	background: #fff;
+	float: right;
+	margin-top: 18px;
+	padding: 10px 10px 15px 10px;
+}
+
+.col_right table{
+	width: 94%;
+	float: left;
+	margin-right: 40px;
+}
+
+.agree{
+	width: 100%;
+	padding: 40px 0 60px 0;
+	float: left;
+}
+
+.agree p{
+	font-size: 12px;
+}
+
+.agree i{
+	font-size: 14px;
+	font-weight: bold;
+	color: #333;
+}
+
+input.register_btn{
+	font-size: 14px;
+	color: #fff;
+	padding: 10px 15px;
+	cursor: pointer;
+	box-shadow: 0px 0px 3px #ccc;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#80c425+0,329e19+100 */
+background: #80c425; /* Old browsers */
+background: -moz-linear-gradient(top,  #80c425 0%, #329e19 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#80c425), color-stop(100%,#329e19)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #80c425 0%,#329e19 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #80c425 0%,#329e19 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #80c425 0%,#329e19 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #80c425 0%,#329e19 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80c425', endColorstr='#329e19',GradientType=0 ); /* IE6-9 */
+
+}
+
+.btn{
+	width: 100%;
+	float: left;
+	text-align: center;
+	margin: 30px 0px 10px 0px;
+}
+
+.register_btn{
+	width: 80px;
+	display: inline-block;
+	border-radius:3px;
+	background: #333;
+	color: #fff;
+	text-decoration: none;
+	padding:10px 0px;
+	margin: 0 10px;
+}
+
+
+
+.register_btn:hover{
+	background: #e60613;
+}
+
+
+
+input[type="radio"]{
+	margin: 0 10px;
+}
+
+
+@media all and (max-width: 768px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1024px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min-resolution: 192dpi) and (max-width: 1024px), only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
+
+
+#main-hol .header {
+	background-color:#000;
+	border-bottom:5px solid #FF0000;
+	width:100%;
+	height:130px;
+	padding: 0px;
+	float:left;
+}
+
+#main-hol .ccg-logo{ width:100%; float: left; height:inherit; margin:0 auto; text-align: center;}
+
+#main-hol .ccg-logo img {margin-top:0.8em; margin-left: 0em; margin-bottom: 0em;}
+
+#main-hol .inner-foot {padding:0.5em 0.5em; text-align: center;}
+
+#main-hol .body-ctxt{
+	width:300px;
+	margin:0 auto;
+	float:right;
+}
+
+#main-hol .login-bx { width:300px; margin-top:2em; float:right; margin-right: 0em;}
+
+}

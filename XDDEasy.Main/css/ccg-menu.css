@@ -1,0 +1,121 @@
+#lock-header { width:100%; margin:0 auto; clear:both; position:fixed;}
+
+#menu { width:100%; background:#FFF; box-shadow:#666 0 1px 18px; -moz-box-shadow:#666 0 1px 18px; -ms-box-shadow:#666 0 1px 18px; -o-box-shadow:#666 0 1px 18px; -webkit-box-shadow:#666 0 1px 18px; }
+
+#menu nav { width:90%; margin:0 auto;}
+
+#menu nav ul {
+	padding:0;
+	margin:0;
+	list-style:none;
+	text-decoration:none;
+	display:inline-block;
+}
+
+#menu li {
+	padding:10px 20px;
+	display:inline-block;
+}
+#menu li:hover { background:#CCC;}
+#menu li a { color:#000; text-decoration:none; padding:5px;}
+
+
+#menu ul li ul {
+	position:absolute;
+	display:block;
+	background:rgba(0,0,0,0.8);
+	visibility:hidden;
+	z-index:9999;
+	margin:0;
+	padding:0;
+	transition:opacity linear 0.15s;
+	border-bottom:5px solid #900;
+}
+#menu ul li:hover > ul {
+	visibility:visible;
+	display:block;
+}
+
+#menu li > ul > li {
+	padding:15px 40px;
+	display:inherit;
+}
+#menu li > ul > li:hover { background:#900;}
+#menu li > ul > li > a {color:white; text-decoration:none;}
+
+#menu ul li ul li ul {
+	position:fixed;
+	display:block;
+	background:rgba(0,0,0,0.8);
+	visibility:hidden;
+	z-index:9999;
+	margin-left:60px;
+	transition:opacity linear 0.15s;
+}
+#menu ul li ul li:hover > ul {
+	visibility:visible;
+	display:block;
+}
+
+#menu li > ul > li > ul > li {
+	padding:15px 40px;
+	display:inherit;
+}
+#menu li > ul > li > ul > li:hover { background:#900;}
+#menu li > ul > li > ul > li > a {color:white; text-decoration:none;}
+
+.arrow { font-size:8px;}
+
+@media screen (max-width:768px) {
+}
+
+
+<!--new code-->
+#panel_left123
+{
+	background:#F6393C;
+	float:left;
+	width:500px;
+	height:200px;
+	display:block;
+
+	padding:0px;
+	
+}
+
+#panel_left
+{
+
+	float:left;
+	width:55%;
+	display:block;
+	padding:5px;
+}
+
+#panel_left p
+{
+	font-size:13px;
+	text-align:justify;
+	line-height:20px;
+}
+
+.img_shadow
+{
+	-webkit-box-shadow: 1px 3px 5px 0px rgba(148,148,148,1);
+-moz-box-shadow: 1px 3px 5px 0px rgba(148,148,148,1);
+box-shadow: 1px 3px 5px 0px rgba(148,148,148,1);
+}
+.img_show
+{
+	width:100%;
+	height:auto
+}
+
+#panel_right
+{
+	
+	float:right;
+	width:42%;
+	display:block;
+	padding:7px;
+}

@@ -1,90 +1,127 @@
-﻿@{
+﻿@using XDDEasy.Main.Models
+@model LoginViewModel
+@{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<link href="~/css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="~/js/jquery.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        function changeLocale(localeText) {
+            document.login.agp.value = "";
+            document.login.DkO02Ile.value = localeText;
+            document.login.locale.value = localeText;
+            document.login.method = "POST";
+            document.login.action = "http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=980&JdkSeOIUy=1476879042366&ZsnJOI1=157dcd9c73e";
+            document.login.submit();
+        }
+        function refreshCode() {
+            document.login.coderefresh.value = "true";
+            document.login.method = "POST";
+            document.login.action = "http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=990&JdkSeOIUy=1476879042366&ZsnJOI1=157dcd9c73e";
+            document.login.submit();
+        }
+        function redirectPubReg() {
+            document.login.method = "POST";
+            document.login.action = "http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=37100&JdkSeOIUy=1476879042366&ZsnJOI1=157dcd9c73e";
+            document.login.submit();
+        }
+        /*function doSubmitPublic(){
+          document.forms[1].submit();
+        }*/
+    </script>
+    <title>Capital Clearance LLC</title>
+    <link rel="stylesheet" type="text/css" href="~/css/ccgs.css">
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="~/css/nav.css">
+    <script src="~/script/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="~/script/script.js"></script>
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+</head>
+<body>
+    <div id="main-hol">
+        <div class="header">
+            <div class="ccg-logo">
+                <img src="~/img/logo.png" width="auto" height="68px" alt="CCG">
+                <div id="cssmenu" class="rp_menu">
+                    <div id="menu-line" style="width: 147px; left: 0px;"></div><div id="menu-button">Menu</div>
+                    <ul>
+                        <li class="has-sub">
+                            <a href="http://login.capitalclearance.com/ControllerServlet?dYoIos00ekf=980&amp;JdkSeOIUy=1476879025361&amp;ZsnJOI1=157dcd984d1#"><i class="fa fa-globe"></i> 区域</a>
+                            <ul>
+                                <li>
+                                    <a href="javascript:changeLocale(&#39;en_US&#39;)">
+                                        <img src="~/img/en.png" width="16" height="16" alt="English">
+                                        &nbsp;English
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:changeLocale(&#39;zh_CN&#39;)">
+                                        <img src="~/img/cn.png" width="16" height="16" alt="Chinese Simplified">
+                                        &nbsp;Chinese Simplified
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:changeLocale(&#39;ja_JP&#39;)">
+                                        <img src="~/img/jp.png" width="16" height="16" alt="Japanese">
+                                        &nbsp;Japanese
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:changeLocale(&#39;ko_KR&#39;)">
+                                        <img src="~/img/kr.png" width="16" height="16" alt="Korean">
+                                        &nbsp;Korean
+                                    </a>
+                                </li>
+                            </ul>
+                            <span class="submenu-button"></span>
+                        </li>
 
-<div class="place">
-    <span>位置：</span>
-    <ul class="placeul">
-        <li><a href="#">首页</a></li>
-    </ul>
-</div>
-<div class="mainindex">
-    <div class="welinfo">
-        <span><img src="~/images/sun.png" alt="天气" /></span>
-        <b>Admin早上好，欢迎使用信息管理系统</b>(admin@uimaker.com)
-        <a href="#">帐号设置</a>
-    </div>
-    <div class="welinfo">
-        <span><img src="~/images/time.png" alt="时间" /></span>
-        <i>您上次登录的时间：2013-10-09 15:22</i> （不是您登录的？<a href="#">请点这里</a>）
-    </div>
-    <div class="xline"></div>
-    <ul class="iconlist">
-        <li>
-            <img src="~/images/ico01.png" />
-            <p>
-                <a href="#">管理设置</a>
-            </p>
-        </li>
-        <li>
-            <img src="~/images/ico02.png" />
-            <p>
-                <a href="#">发布文章</a>
-            </p>
-        </li>
-        <li>
-            <img src="~/images/ico03.png" />
-            <p>
-                <a href="#">数据统计</a>
-            </p>
-        </li>
-        <li>
-            <img src="~/images/ico04.png" />
-            <p>
-                <a href="#">文件上传</a>
-            </p>
-        </li>
-        <li>
-            <img src="~/images/ico05.png" />
-            <p>
-                <a href="#">目录管理</a>
-            </p>
-        </li>
-        <li>
-            <img src="~/images/ico06.png" />
-            <p>
-                <a href="#">查询</a>
-            </p>
-        </li>
-    </ul>
-    <div class="ibox">
-        <a class="ibtn"><img src="~/images/iadd.png" />添加新的快捷功能</a>
-    </div>
-    <div class="xline"></div>
-    <div class="box"></div>
-    <div class="welinfo">
-        <span><img src="~/images/dp.png" alt="提醒" /></span>
-        <b>Uimaker信息管理系统使用指南</b>
-    </div>
-    <ul class="infolist">
-        <li><span>您可以快速进行文章发布管理操作</span><a class="ibtn">发布或管理文章</a></li>
-        <li><span>您可以快速发布产品</span><a class="ibtn">发布或管理产品</a></li>
-        <li><span>您可以进行密码修改、账户设置等操作</span><a class="ibtn">账户管理</a></li>
-    </ul>
-    <div class="xline"></div>
-    <div class="uimakerinfo">
-        <b>查看Uimaker网站使用指南，您可以了解到多种风格的B/S后台管理界面,软件界面设计，图标设计，手机界面等相关信息</b>(<a href="http://www.uimaker.com" target="_blank">www.uimaker.com</a>)
-    </div>
-    <ul class="umlist">
-        <li><a href="#">如何发布文章</a></li>
-        <li><a href="#">如何访问网站</a></li>
-        <li><a href="#">如何管理广告</a></li>
-        <li><a href="#">后台用户设置(权限)</a></li>
-        <li><a href="#">系统设置</a></li>
-    </ul>
-</div>
+                        <li><a href="javascript:redirectPubReg()"><i class="fa fa-pencil"></i> 注册</a></li>
+                    </ul>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+        </div>
+        <div class="body-ctxt">
+            <div class="login-bx">
 
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                {
+                    <div style="padding:1em; ">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "form-horizontal text-danger" })
+                        <h2 style="padding: 0; margin: 0;">在线 - XXXXXX集团</h2>
+                        <p style="color: #999; margin: 0; padding: 0.5em 0;">您的私人在线管理系统。</p>
+                        <div style="border-bottom: 8px groove #F00; width: 100%; height: 5px; margin-bottom: 2em;"></div>
+
+                        @Html.LabelFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-bx" })
+
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-bx" })
+
+                        <input type="submit" value="登录" class="sub-bt" />
+                    </div>
+                }
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+        <br><br><br>
+        <div class="footer">
+            <div class="inner-foot">
+                Capital Clearance LLC © Copyrights 2008. All rights reserved.
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

@@ -69,6 +69,7 @@ namespace XDDEasy.Main.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();

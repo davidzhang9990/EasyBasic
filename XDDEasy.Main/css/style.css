@@ -1,0 +1,310 @@
+/*BODY {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana
+}
+.head {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; color:#774e07; FONT-FAMILY: Verdana; BACKGROUND-COLOR:#ffa800; TEXT-ALIGN: center;
+	
+}
+
+
+.even {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana; BACKGROUND-COLOR: white
+}
+.odd {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #EEEEEE
+}
+.alert {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #ffb3b3
+}
+.skalert {
+	FONT-SIZE: 8pt; CURSOR: hand; COLOR: blue; FONT-FAMILY: Verdana
+}
+.norm {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana
+}
+.sel {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #fbfb93
+}
+.tablehead {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; FONT-FAMILY: Verdana
+}
+.items {
+	FONT-SIZE: 8pt; MARGIN-BOTTOM: 0px; COLOR: #4e211c; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #fbfb93; TEXT-ALIGN: center
+}
+A:link {
+	FONT-SIZE: 8pt; COLOR: #000099; FONT-FAMILY: Verdana; TEXT-DECORATION: none
+}
+A:hover {
+	FONT-SIZE: 8pt; COLOR: #000099; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #fbfb93; TEXT-DECORATION: none
+}
+A:visited {
+	FONT-SIZE: 8pt; COLOR: #000099; FONT-FAMILY: Verdana; TEXT-DECORATION: none
+}
+.titles {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 12px; BACKGROUND-COLOR:#ffa800; PADDING-BOTTOM: 1px; color:#774e07; PADDING-TOP: 7px; padding-bottom:7px; FONT-FAMILY: Verdana
+}
+.searchtab {
+	
+}
+.filersColumn {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #d9a872
+}
+INPUT {
+	BORDER-RIGHT: black 1px solid;
+	BORDER-TOP: black 1px solid;
+	FONT-SIZE: 8pt;
+	BORDER-LEFT: black 1px solid;
+	COLOR: #4e211c;
+	BORDER-BOTTOM: black 1px solid;
+	FONT-FAMILY: Verdana;
+	BACKGROUND-COLOR: #EEEEEE
+}
+TEXTAREA {
+	BORDER-RIGHT: black 1px solid;
+	BORDER-TOP: black 1px solid;
+	FONT-SIZE: 8pt;
+	BORDER-LEFT: black 1px solid;
+	COLOR: #4e211c;
+	BORDER-BOTTOM: black 1px solid;
+	FONT-FAMILY: Verdana;
+	BACKGROUND-COLOR: #EEEEEE
+}
+INPUT.text {
+	BORDER-RIGHT: black 1px solid;
+	BORDER-TOP: black 1px solid;
+	FONT-SIZE: 8pt;
+	BORDER-LEFT: black 1px solid;
+	COLOR: #4e211c;
+	BORDER-BOTTOM: black 1px solid;
+	FONT-FAMILY: Verdana;
+	BACKGROUND-COLOR: #EEEEEE
+}
+SELECT {
+	BORDER-RIGHT: black 1px solid;
+	BORDER-TOP: black 1px solid;
+	FONT-SIZE: 8pt;
+	BORDER-LEFT: black 1px solid;
+	COLOR: #4e211c;
+	BORDER-BOTTOM: black 1px solid;
+	FONT-FAMILY: Verdana;
+	BACKGROUND-COLOR: #EEEEEE
+}
+H1 {
+	PAGE-BREAK-BEFORE: always
+}
+.menu_name {
+	FONT-WEIGHT: normal; FONT-SIZE: 10pt; MARGIN-BOTTOM: 2px; COLOR: black; FONT-FAMILY: Arial
+}
+.menu_title {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: Arial
+}
+TABLE {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana
+}
+TABLE.tr {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana
+}
+TABLE.td {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana; 
+}
+
+@media Screen    
+{
+.nodisplay {
+	DISPLAY: none
+}
+
+}
+
+@media Print    
+{
+.head {
+	FONT-SIZE: 8pt; VERTICAL-ALIGN: bottom; COLOR: black; TEXT-ALIGN: center; 
+}
+.noprint {
+	DISPLAY: none
+}
+    }
+.tbldata CAPTION {
+	DISPLAY: none
+}
+TABLE.tbldata {
+	CLEAR: both; BORDER-COLLAPSE: collapse
+}
+.tbldata TBODY TD {
+	BORDER-RIGHT: 0px solid; PADDING-RIGHT: 0px; BORDER-TOP: 0px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; BORDER-LEFT: 0px solid; PADDING-TOP: 2px; BORDER-BOTTOM: 1px solid
+}
+.tbldata THEAD TH {
+	BORDER-RIGHT: 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: 1px solid; PADDING-LEFT: 5px; BACKGROUND: #d9a872; PADDING-BOTTOM: 1px; BORDER-LEFT: 0px solid; PADDING-TOP: 1px; BORDER-BOTTOM: 1px solid
+}
+.tbldata THEAD TH INPUT {
+	MARGIN-TOP: -1px; MARGIN-BOTTOM: 0px
+}
+.tbldata TD IMG {
+	TEXT-ALIGN: right
+}
+.tbldata TH IMG {
+	FLOAT: right; MARGIN: 4px 4px 0px 0px
+}
+.tbldata TR.msgnew {
+	FONT-WEIGHT: bold
+}
+F
+
+
+
+/******************** NEW DESIGN 20151106 ***************************/
+
+
+
+BODY {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana
+}
+.head {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; color:#fff; FONT-FAMILY: Verdana; BACKGROUND-COLOR:#e20612; TEXT-ALIGN: center; padding:5px 0px;
+}
+
+
+.even {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana; BACKGROUND-COLOR: white
+}
+.odd {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #EEEEEE
+}
+.alert {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #ffb3b3
+}
+.skalert {
+	FONT-SIZE: 8pt; CURSOR: hand; COLOR: blue; FONT-FAMILY: Verdana
+}
+.norm {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana
+}
+.sel {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #fbfb93
+}
+.tablehead {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; FONT-FAMILY: Verdana
+}
+.items {
+	FONT-SIZE: 8pt; MARGIN-BOTTOM: 0px; COLOR: #4e211c; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #fbfb93; TEXT-ALIGN: center
+}
+A:link {
+	FONT-SIZE: 8pt; COLOR: #000099; FONT-FAMILY: Verdana; TEXT-DECORATION: none
+}
+A:hover {
+	FONT-SIZE: 8pt; COLOR: #000099; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #fbfb93; TEXT-DECORATION: none
+}
+A:visited {
+	FONT-SIZE: 8pt; COLOR: #000099; FONT-FAMILY: Verdana; TEXT-DECORATION: none
+}
+.titles {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 12px; BACKGROUND-COLOR:#e20612; PADDING-BOTTOM: 1px; color:#fff; PADDING-TOP: 7px; padding-bottom:7px; FONT-FAMILY: Verdana
+}
+.searchtab {
+	
+}
+.filersColumn {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #d9a872
+}
+INPUT {
+	BORDER-RIGHT: black 1px solid;
+	BORDER-TOP: black 1px solid;
+	FONT-SIZE: 8pt;
+	BORDER-LEFT: black 1px solid;
+	COLOR: #4e211c;
+	BORDER-BOTTOM: black 1px solid;
+	FONT-FAMILY: Verdana;
+	BACKGROUND-COLOR: #EEEEEE
+}
+TEXTAREA {
+	BORDER-RIGHT: black 1px solid;
+	BORDER-TOP: black 1px solid;
+	FONT-SIZE: 8pt;
+	BORDER-LEFT: black 1px solid;
+	COLOR: #4e211c;
+	BORDER-BOTTOM: black 1px solid;
+	FONT-FAMILY: Verdana;
+	BACKGROUND-COLOR: #EEEEEE
+}
+INPUT.text {
+	BORDER-RIGHT: black 1px solid;
+	BORDER-TOP: black 1px solid;
+	FONT-SIZE: 8pt;
+	BORDER-LEFT: black 1px solid;
+	COLOR: #4e211c;
+	BORDER-BOTTOM: black 1px solid;
+	FONT-FAMILY: Verdana;
+	BACKGROUND-COLOR: #EEEEEE
+}
+SELECT {
+	BORDER-RIGHT: black 1px solid;
+	BORDER-TOP: black 1px solid;
+	FONT-SIZE: 8pt;
+	BORDER-LEFT: black 1px solid;
+	COLOR: #4e211c;
+	BORDER-BOTTOM: black 1px solid;
+	FONT-FAMILY: Verdana;
+	BACKGROUND-COLOR: #EEEEEE
+}
+H1 {
+	PAGE-BREAK-BEFORE: always
+}
+.menu_name {
+	FONT-WEIGHT: normal; FONT-SIZE: 10pt; MARGIN-BOTTOM: 2px; COLOR: black; FONT-FAMILY: Arial
+}
+.menu_title {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: Arial
+}
+TABLE {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana
+}
+TABLE.tr {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana
+}
+TABLE.td {
+	FONT-SIZE: 8pt; FONT-FAMILY: Verdana; 
+}
+
+@media Screen    
+{
+.nodisplay {
+	DISPLAY: none
+}
+
+}
+
+@media Print    
+{
+.head {
+	FONT-SIZE: 8pt; VERTICAL-ALIGN: bottom; COLOR: black; TEXT-ALIGN: center; 
+}
+.noprint {
+	DISPLAY: none
+}
+    }
+.tbldata CAPTION {
+	DISPLAY: none
+}
+TABLE.tbldata {
+	CLEAR: both; BORDER-COLLAPSE: collapse
+}
+.tbldata TBODY TD {
+	BORDER-RIGHT: 0px solid; PADDING-RIGHT: 0px; BORDER-TOP: 0px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; BORDER-LEFT: 0px solid; PADDING-TOP: 2px; BORDER-BOTTOM: 1px solid
+}
+.tbldata THEAD TH {
+	BORDER-RIGHT: 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: 1px solid; PADDING-LEFT: 5px; BACKGROUND: #d9a872; PADDING-BOTTOM: 1px; BORDER-LEFT: 0px solid; PADDING-TOP: 1px; BORDER-BOTTOM: 1px solid
+}
+.tbldata THEAD TH INPUT {
+	MARGIN-TOP: -1px; MARGIN-BOTTOM: 0px
+}
+.tbldata TD IMG {
+	TEXT-ALIGN: right
+}
+.tbldata TH IMG {
+	FLOAT: right; MARGIN: 4px 4px 0px 0px
+}
+.tbldata TR.msgnew {
+	FONT-WEIGHT: bold
+}
+F
