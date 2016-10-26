@@ -11,6 +11,7 @@ using XDDEasy.Domain.AccountAggregates;
 using XDDEasy.Domain.Identity;
 using Newtonsoft.Json;
 using XDDEasy.Contract.ResourceContract;
+using XDDEasy.Domain.PageAggregates;
 using XDDEasy.Domain.ResourceAggregates;
 
 namespace XDDEasy.WebApi.Host
@@ -21,6 +22,7 @@ namespace XDDEasy.WebApi.Host
         {
             UserMappings();
             ResourceMappings();
+            PageMappings();
         }
 
         public static void UserMappings()
@@ -41,6 +43,14 @@ namespace XDDEasy.WebApi.Host
 
             //Teacher
             //Mapper.CreateMap<UserProfile, UserProfileResponse>();
+        }
+
+        private static void PageMappings()
+        {
+            Mapper.CreateMap<CreatePageRequest, Page>();
+            Mapper.CreateMap<UpdatePageRequest, Page>();
+            Mapper.CreateMap<Page, PageResponse>();
+            Mapper.CreateMap<CreateRolePageRequest, RolePage>();
         }
 
         private static void ResourceMappings()

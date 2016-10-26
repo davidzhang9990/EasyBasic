@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http.OData.Query;
 using AutoMapper;
 using Common.EntityFramework.DataAccess;
 using XDDEasy.Contract;
@@ -15,6 +16,8 @@ namespace XDDEasy.Domain.PageAggregates
     public interface IPageService
     {
         IEnumerable<PageResponse> GetAllPages();
+        IEnumerable<PageResponse> GetPaging(ODataQueryOptions<Page> options);
+
         PageResponse AddPage(CreatePageRequest request);
         void EditPage(Guid pageId, UpdatePageRequest request);
         void DeletePage(Guid pageId);
@@ -46,6 +49,11 @@ namespace XDDEasy.Domain.PageAggregates
         {
             var pages = _pageRepository.GetAll();
             return Mapper.Map<IEnumerable<PageResponse>>(pages);
+        }
+
+        public IEnumerable<PageResponse> GetPaging(ODataQueryOptions<Page> options)
+        {
+            return options.ApplyTo(_pageRepository.GetQuery()) as IEnumerable<PageResponse>;
         }
 
         public PageResponse AddPage(CreatePageRequest request)

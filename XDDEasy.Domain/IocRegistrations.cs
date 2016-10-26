@@ -41,6 +41,7 @@ namespace XDDEasy.Domain
                .InstancePerLifetimeScope()
                .PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies);
 
+
             containerBuilder.Register(context =>
             {
                 var requestContext = RequestContext.GetFromCallContext();
@@ -183,6 +184,12 @@ namespace XDDEasy.Domain
         private void RegisterPage(ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterType<PageService>()
+              .AsImplementedInterfaces()
+              .EnableInterfaceInterceptors()
+              .EnableLog()
+              .InstancePerLifetimeScope();
+
+            containerBuilder.RegisterType<IPageService>()
               .AsImplementedInterfaces()
               .EnableInterfaceInterceptors()
               .EnableLog()

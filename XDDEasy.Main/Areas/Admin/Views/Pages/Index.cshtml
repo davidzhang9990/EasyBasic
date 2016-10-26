@@ -1,0 +1,201 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var addDisplay = ViewBag.addDisplay;
+    var editDisplay = ViewBag.editDisplay;
+    var delDisplay = ViewBag.delDisplay;
+}
+
+@Styles.Render("~/lib/DataTables/dataTables")
+@Styles.Render("~/lib/pagination/pagination")
+
+<div class="header">
+
+    <h1 class="page-title">@EasyResource.Value("UI_Pages_Manage")</h1>
+</div>
+
+<ul class="breadcrumb">
+    <li><a href="/Admin/Member">@EasyResource.Value("UI_Home")</a> <span class="divider">/</span></li>
+    <li class="active">@EasyResource.Value("UI_Pages_Manage")</li>
+</ul>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+
+        <div class="btn-toolbar">
+            <button class="btn btn-primary" id="btnAdd" onclick="javascript: addResource();"><i class="icon-plus"></i>@EasyResource.Value("UI_Add_Pages")</button>
+            <button class="btn">@EasyResource.Value("UI_Import")</button>
+            <button class="btn">@EasyResource.Value("UI_Export")</button>
+            <div class="btn-group">
+            </div>
+        </div>
+        <div class="well">
+            <table class="table responsive-table responsive-table-on" id="resource-table">
+                <thead>
+                    <tr>
+                        <th>@EasyResource.Value("UI_Pages_Name")</th>
+                        <th>@EasyResource.Value("UI_ActionName")</th>
+                        <th>@EasyResource.Value("UI_ControlName")</th>
+                        <th>@EasyResource.Value("UI_Area")</th>
+                        <th>@EasyResource.Value("UI_ShowPage")</th>
+                        <th>@EasyResource.Value("UI_UpdatedTime")</th>
+                        <th style="width: 100px;"></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <footer>
+            <hr>
+            <p class="pull-right">
+                Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+            </p>
+
+            <p>
+                &copy; 2012 <a href="#" target="_blank">Portnine</a>
+            </p>
+        </footer>
+
+    </div>
+</div>
+
+@section ScriptSection{
+
+    @Scripts.Render("~/bundles/IndexCommon")
+    @Scripts.Render("~/bundles/dataTables")
+    @Scripts.Render("~/bundles/libs/lodash")
+    <script>
+
+        var table, contentsUI;
+
+        newUrl = function () {
+            return "/api/page/paging";
+        };
+
+        freshData = function () {
+            if (table) {
+                table.fnReloadAjax(newUrl());
+                table.fnPageChange('first');
+            }
+        };
+
+        $(document).ready(function () {
+            //显示隐藏按钮
+            $("#btnAdd").css("display", "@addDisplay");
+            loadTable();
+        });
+
+        loadTable = function () {
+            table = $('#resource-table').dataTable({
+                "oLanguage": {
+                    "sUrl": "/lib/datatables/i18n/" + lang + ".js"
+                },
+                "sPaginationType": "full_numbers",
+                "bAutoWidth": true,
+                "aLengthMenu": [10, 20, 50, 100, 200],
+
+                'sDom': '<"dataTables_header"lfr>t<"dataTables_footer"ip>',
+
+                "bProcessing": true,
+                "bServerSide": true,
+                "bStateSave": true,
+                "aaSorting": [[1, 'desc']],
+
+                "sAjaxSource": newUrl(),
+                "aoColumns": [
+                   {
+                       mData: "name",
+                       sTitle: "@EasyResource.Value("UI_Pages_Name")",
+                       sType: "string",
+                       mSearchOptions: { bOutTable: false },
+                       bSearchable: true
+                   },
+                {
+                    mData: "actionName",
+                    sTitle: "@EasyResource.Value("UI_ActionName")",
+                    sType: "string",
+                    mSearchOptions: { bOutTable: false },
+                    bSearchable: false
+                },
+                {
+                    mData: "controlName",
+                    sTitle: "@EasyResource.Value("UI_ControlName")",
+                    sType: "string",
+                    mSearchOptions: { bOutTable: false },
+                    bSearchable: false
+                },
+                {
+                    mData: "area",
+                    sTitle: "@EasyResource.Value("UI_Area")",
+                    sType: "string",
+                    mSearchOptions: { bOutTable: false },
+                    bSearchable: false
+                },
+                {
+                    mData: "showPage",
+                    sTitle: "@EasyResource.Value("UI_ShowPage")",
+                    sType: "string",
+                    mSearchOptions: { bOutTable: false },
+                    bSearchable: false
+                }
+                ,
+                {
+                    mData: "dateUpdated",
+                    sTitle: "@EasyResource.Value("UI_UpdatedTime")",
+                    sType: "date",
+                    mRender: function (oObj, sVal) {
+                        return FormatDate(oObj, "MM/dd/yyyy hh:mm");
+                    }
+                },
+                {
+                    mData: "id",
+                    bSortable: false,
+                    bSearchable: false,
+                    mRender: function (oObj, sVal, tea) {
+                        var html;
+                        html = "<span class=\"button-group compact\">";
+                        html = html + "<a title=\"@EasyResource.Value("UI_Edit")\" style=\"display:@editDisplay\" class=\"button  with-tooltip\" href=\"javascript:void('0');\" onclick=\"javascript: editResource('" + oObj + "');\">@EasyResource.Value("UI_Edit")</a> | ";
+                        html = html + "<a title=\"@EasyResource.Value("UI_Delete")\" style=\"display:@delDisplay\" class=\"button with-tooltip\" href=\"javascript:void('0');\" onclick=\"javascript: deleteResource('" + oObj + "');\">@EasyResource.Value("UI_Delete")</a>";
+                        html = html + "</span>";
+                        return html;
+                    }
+                }
+                ],
+                "fnServerData": fnServerOData,
+                "bUseODataViaJSONP": false
+            });
+        };
+
+        function clearStudentTable() {
+            $('tbody').html("");
+        }
+
+        function addResource() {
+            window.location.href = "/Admin/Resource/Add";
+        }
+
+        function deleteResource(id) {
+            var delResource = function (id) {
+                $.ajax(
+                {
+                    type: 'DELETE',
+                    url: "/api/Resource/" + id,
+                    beforeSend: function (XMLHttpRequest) {
+                    },
+                    success: function (result) {
+                        freshData();
+                    }
+                });
+            };
+            confirmMsgModal("@EasyResource.Value("UI_MsgTitle_DeleteStudent")", "@EasyResource.Value("UI_MsgContent_DeleteStudent")", delResource, function () { }, id);
+        }
+
+        function editResource(id) {
+            window.location.href = "/Admin/Resource/Edit?id=" + id;
+        }
+    </script>
+}
+
+
+
+
