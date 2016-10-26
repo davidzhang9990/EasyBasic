@@ -54,6 +54,14 @@ namespace XDDEasy.WebApi.Host.Controllers
             _resourceProvider.Delete(resourceId);
         }
 
+        [HttpGet]
+        [Route("{resourceId:guid}")]
+        public ResourceResponse Get(Guid resourceId)
+        {
+            var resource = _resourceProvider.GetResource(resourceId);
+            return Mapper.Map<ResourceResponse>(resource);
+        }
+
         [HttpDelete]
         [Route("cultrue/{culture}/name/{name}")]
         public void Delete(string culture, string name)

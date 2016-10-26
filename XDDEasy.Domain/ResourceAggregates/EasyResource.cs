@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
+using Common.Helper;
 
 namespace XDDEasy.Domain.ResourceAggregates
 {
@@ -19,7 +20,7 @@ namespace XDDEasy.Domain.ResourceAggregates
 
         public static string Value(string key)
         {
-            return Provider.GetResource(key, CultureInfo.CurrentUICulture.Name) as string;
+            return Provider.GetResource(key, LangHelper.GetLanguage()) as string;
         }
 
 

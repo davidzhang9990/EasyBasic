@@ -14,6 +14,9 @@ namespace XDDEasy.Domain.ResourceAggregates
     public interface IResourceProvider
     {
         object GetResource(string name, string culture);
+
+        Resource GetResource(Guid resourceId);
+
         Resource Add(ResourceRequest resourceRequest);
         void Delete(Guid resourceId);
         void Delete(string culture, string name);
@@ -59,7 +62,6 @@ namespace XDDEasy.Domain.ResourceAggregates
             if (Cache && _resources == null)
             {
                 // Fetch all resources
-
                 lock (LockResources)
                 {
 
@@ -75,6 +77,11 @@ namespace XDDEasy.Domain.ResourceAggregates
                 return _resources[string.Format("{0}.{1}", culture, name)].Value;
             }
             return ReadResource(name, culture).Value;
+        }
+
+        public Resource GetResource(Guid resourceId)
+        {
+            return _resourceRepository.GetByKey(resourceId);
         }
 
         public Resource Add(ResourceRequest resourceRequest)

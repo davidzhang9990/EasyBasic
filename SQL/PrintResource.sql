@@ -1,6 +1,6 @@
 
-if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Copy_Single_Teacher_FromSource]') and OBJECTPROPERTY(id, N'IsProcedure') = 1) 
-drop procedure [dbo].[Copy_Single_Teacher_FromSource] 
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Print_Resource]') and OBJECTPROPERTY(id, N'IsProcedure') = 1) 
+drop procedure [dbo].[Print_Resource] 
 GO	
 /*
 ********************************
@@ -28,7 +28,7 @@ begin
 		While @@fetch_status=0 
 		Begin 
 
-			print 'Insert Into [dbo].[Resource] values('''+ @Id +''','''+ @Name +''','''+ @Value +''','''+ @Culture +''','''+ @Type +''','''+ @Group +''','''+ CONVERT(varchar(100), @DateAdded, 9) +''','''+CONVERT(varchar(100), @DateUpdated, 9) +''','''+ @AddedBy +''','''+ @UpdatedBy +''''
+			print 'Insert Into [dbo].[Resource] values('''+ @Id +''','''+ @Name +''','''+ @Value +''','''+ @Culture +''','''+ @Type +''','''+ @Group +''','''+ CONVERT(varchar(100), @DateAdded, 9) +''','''+CONVERT(varchar(100), @DateUpdated, 9) +''','''+ @AddedBy +''','''+ @UpdatedBy +''')'
 			
 		Fetch Next From curr_Resource Into @Id,@Name,@Value,@Culture,@Type,@Group,@DateAdded,@DateUpdated,@AddedBy,@UpdatedBy
 		End 
