@@ -565,6 +565,7 @@
     <Content Include="lib\DataTables\package.json" />
     <Content Include="Areas\Admin\Views\Resource\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Pages\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Pages\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\customize\common.js" />
     <Content Include="Scripts\customize\customizePaging.js" />

@@ -1,0 +1,147 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="header">
+    <h1 class="page-title"></h1>
+</div>
+
+<ul class="breadcrumb">
+    <li><a href="/Admin/Member">@EasyResource.Value("UI_Home")</a> <span class="divider">/</span></li>
+    <li><a href="/Admin/Resource">@EasyResource.Value("UI_Pages_Manage")</a> <span class="divider">/</span></li>
+    <li class="active"><span id="spTitle"></span></li>
+</ul>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="well">
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active in" id="home">
+                    <form id="tab">
+                        <label>@EasyResource.Value("UI_Pages_Name")</label>
+                        <input type="text" id="txtName" class="input input-xlarge validate[required,ajax[ajaxCall]]">
+                        <label>@EasyResource.Value("UI_ActionName")</label>
+                        <input type="text" id="txtActionName" class="input input-xlarge validate[required,ajax[ajaxCall]]">
+                        <label>@EasyResource.Value("UI_ControlName")</label>
+                        <input type="text" id="txtControlName" class="input input-xlarge validate[required,ajax[ajaxCall]]">
+                        <label>@EasyResource.Value("UI_Area")</label>
+                        <input type="text" id="txtArea" class="input input-xlarge validate[required,ajax[ajaxCall]]">
+                        <label>@EasyResource.Value("UI_ShowPage")</label>
+                        <select name="ddltype" id="ddlShowPage" class="input-xlarge">
+                            <option value="true">是</option>
+                            <option value="false">否</option>
+                        </select>
+                    </form>
+
+                    <button class="btn btn-primary" id="btnSave"><i class="icon-save"></i> @EasyResource.Value("UI_Save")</button>
+                    <a href="#myModal" data-toggle="modal" class="btn">@EasyResource.Value("UI_Canel")</a>
+
+                    <input id="hidId" type="hidden" value="" />
+                </div>
+
+            </div>
+
+        </div>
+        <footer>
+            <hr>
+            <p class="pull-right">
+                Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+            </p>
+
+            <p>
+                &copy; 2012 <a href="#" target="_blank">Portnine</a>
+            </p>
+        </footer>
+
+    </div>
+</div>
+
+@section ScriptSection
+{
+    @Scripts.Render("~/bundles/formCommon")
+
+    <script type="text/javascript">
+
+        var editPagesId = getQueryParamValue("id");
+
+        loadResource = function (editPagesId) {
+            app.ajax.get("/api/page/" + editPagesId, true, function (data) {
+                setPagesInfo(data);
+            });
+        };
+
+        $(document).ready(function () {
+            if (editPagesId) {
+                $("#hidId").val(editPagesId);
+                loadResource(editPagesId);
+            } else {
+                setPagesInfo();
+            }
+            $('form').validationEngine();
+        });
+
+        setPagesInfo = function (pages) {
+
+            if (editPagesId && pages) {
+
+                $("#spTitle").text("@EasyResource.Value("UI_Edit_Pages")");
+                $(".page-title")[0].innerText = "@EasyResource.Value("UI_Edit_Pages")";
+
+                $("#txtName").val(pages.name);
+                $("#txtActionName").val(pages.actionName);
+                $("#txtControlName").val(pages.controlName);
+                $("#txtArea").val(pages.area);
+                $("#ShowPage").val(pages.showPage);
+            } else {
+                $("#spTitle").text("@EasyResource.Value("UI_Add_Pages")");
+                $(".page-title")[0].innerText = "@EasyResource.Value("UI_Add_Pages")";
+            }
+        };
+
+        document.getElementById("btnSave").onclick = function () {
+            var result = $('form').validationEngine('validate');
+            if (!result) {
+                return;
+            }
+
+            var resource = {
+                "Name": $("#txtName").val(),
+                "ActionName": $('#txtActionName').val(),
+                "ControlName": $('#txtControlName').val(),
+                "Area": $('#txtArea').val(),
+                "ShowPage": $('#ddlShowPage').val(),
+                "Description": ""
+            };
+
+            var createOrUpdateUrl = "/api/page", type;
+            if (editPagesId) {
+                createOrUpdateUrl = createOrUpdateUrl + "/" + editPagesId;
+                type = "PUT";
+            } else {
+                type = "POST";
+            }
+
+            $.ajax({
+                type: type,
+                url: createOrUpdateUrl,
+                data: JSON.stringify(resource),
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    $("#btnSave").prop("disabled", "disabled");
+                },
+                success: function (results, textStatus) {
+                    redirectToIndex();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    $("#btnSave").prop("disabled", "");
+                }
+            });
+        };
+
+        //document.getElementById("btnCancle").onclick = redirectToIndex;
+
+        function redirectToIndex() {
+            window.location = "/Admin/Pages";
+        }
+    </script>
+}

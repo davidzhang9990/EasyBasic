@@ -30,20 +30,6 @@ namespace XDDEasy.WebApi.Host.Controllers
             return _pageService.GetAllPages();
         }
 
-        [Authorize]
-        [HttpGet]
-        [Route("paging")]
-        public IEnumerable<PageResponse> GetPaging(ODataQueryOptions<Page> options)
-        {
-            var resource = _pageService.GetPaging(options);
-            var studentResponses = Mapper.Map<IEnumerable<PageResponse>>(resource);
-            var result = new PageResult<PageResponse>(
-               studentResponses,
-               Request.ODataProperties().NextLink,
-               Request.ODataProperties().TotalCount);
-            return result;
-        }
-
         [HttpPost]
         [Route("")]
         [Transaction]
@@ -52,6 +38,14 @@ namespace XDDEasy.WebApi.Host.Controllers
         public PageResponse AddPage(CreatePageRequest request)
         {
             return _pageService.AddPage(request);
+        }
+
+        [HttpGet]
+        [Route("{pageId:guid}")]
+        public PageResponse Get(Guid pageId)
+        {
+            var resource = _pageService.GetPages(pageId);
+            return Mapper.Map<PageResponse>(resource);
         }
 
         [HttpPut]
@@ -70,6 +64,20 @@ namespace XDDEasy.WebApi.Host.Controllers
         public void DeletePage(Guid pageId)
         {
             _pageService.DeletePage(pageId);
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("paging")]
+        public IEnumerable<PageResponse> GetPaging(ODataQueryOptions<Page> options)
+        {
+            var pages = _pageService.GetPaging(options);
+            var pagesResponses = Mapper.Map<IEnumerable<PageResponse>>(pages);
+            var result = new PageResult<PageResponse>(
+               pagesResponses,
+               Request.ODataProperties().NextLink,
+               Request.ODataProperties().TotalCount);
+            return result;
         }
 
         [HttpGet]

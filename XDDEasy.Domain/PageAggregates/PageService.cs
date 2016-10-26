@@ -16,7 +16,9 @@ namespace XDDEasy.Domain.PageAggregates
     public interface IPageService
     {
         IEnumerable<PageResponse> GetAllPages();
-        IEnumerable<PageResponse> GetPaging(ODataQueryOptions<Page> options);
+        IEnumerable<Page> GetPaging(ODataQueryOptions<Page> options);
+
+        Page GetPages(Guid pageId);
 
         PageResponse AddPage(CreatePageRequest request);
         void EditPage(Guid pageId, UpdatePageRequest request);
@@ -51,9 +53,14 @@ namespace XDDEasy.Domain.PageAggregates
             return Mapper.Map<IEnumerable<PageResponse>>(pages);
         }
 
-        public IEnumerable<PageResponse> GetPaging(ODataQueryOptions<Page> options)
+        public Page GetPages(Guid pageId)
         {
-            return options.ApplyTo(_pageRepository.GetQuery()) as IEnumerable<PageResponse>;
+            return _pageRepository.GetByKey(pageId);
+        }
+
+        public IEnumerable<Page> GetPaging(ODataQueryOptions<Page> options)
+        {
+            return options.ApplyTo(_pageRepository.GetQuery()) as IEnumerable<Page>;
         }
 
         public PageResponse AddPage(CreatePageRequest request)
