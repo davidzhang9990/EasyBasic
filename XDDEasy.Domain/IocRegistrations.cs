@@ -21,6 +21,7 @@ using XDDEasy.Domain.EmailAggregates;
 using Common.Helper;
 using Common.Models;
 using XDDEasy.Domain.AccountAggregates;
+using XDDEasy.Domain.PageAggregates;
 
 namespace XDDEasy.Domain
 {
@@ -80,6 +81,8 @@ namespace XDDEasy.Domain
             RegisterProfile(containerBuilder);
 
             RegisterResource(containerBuilder);
+
+            RegisterPage(containerBuilder);
 
             RegisterEmail(containerBuilder);
 
@@ -175,6 +178,15 @@ namespace XDDEasy.Domain
             containerBuilder.RegisterType<ResourceProvider>()
                 .As<IResourceProvider>()
                 .SingleInstance();
+        }
+
+        private void RegisterPage(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.RegisterType<PageService>()
+              .AsImplementedInterfaces()
+              .EnableInterfaceInterceptors()
+              .EnableLog()
+              .InstancePerLifetimeScope();
         }
 
         private void RegisterEmail(ContainerBuilder containerBuilder)

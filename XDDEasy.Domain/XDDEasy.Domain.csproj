@@ -213,6 +213,7 @@
   <ItemGroup>
     <Compile Include="AccountAggregates\AccountService.cs" />
     <Compile Include="AccountAggregates\User.cs" />
+    <Compile Include="Configuration\RolePageModelConfig.cs" />
     <Compile Include="Configuration\UserModelConfig.cs" />
     <Compile Include="EasyDbContext.cs" />
     <Compile Include="EmailAggregates\Email.cs" />
@@ -235,6 +236,9 @@
     <Compile Include="LogAggregates\Log.cs" />
     <Compile Include="LogAggregates\LogRepository.cs" />
     <Compile Include="LogAggregates\LogService.cs" />
+    <Compile Include="PageAggregates\Page.cs" />
+    <Compile Include="PageAggregates\PageService.cs" />
+    <Compile Include="PageAggregates\RolePage.cs" />
     <Compile Include="ProfileAggregates\Profile.cs" />
     <Compile Include="ProfileAggregates\ProfileService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

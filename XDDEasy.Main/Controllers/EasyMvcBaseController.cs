@@ -18,6 +18,15 @@ namespace XDDEasy.Main.Controllers
     [HandleError]
     public abstract class EasyMvcBaseController : Controller
     {
+        protected static string ViewDisplay = "none";
+        protected static string AddDisplay = "none";
+        protected static string EditDisplay = "none";
+        protected static string DelDisplay = "none";
+        protected static string ImportDisplay = "none";
+        protected static string ExportDisplay = "none";
+
+
+
         public int PageSize
         {
             get

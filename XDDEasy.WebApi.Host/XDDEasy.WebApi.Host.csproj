@@ -162,6 +162,7 @@
     <Compile Include="App_Start\AttributeRoutingHttpConfigcs.cs" />
     <Compile Include="App_Start\MapperConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\ResourceController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

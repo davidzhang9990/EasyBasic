@@ -303,7 +303,7 @@
     <Content Include="lib\bootstrap\js\bootstrap.js" />
     <Content Include="lib\bootstrap\js\bootstrap.min.js" />
     <Content Include="lib\DataTables\i18n\en-us.js" />
-    <Content Include="lib\DataTables\i18n\zh-Hans.js" />
+    <Content Include="lib\DataTables\i18n\zh-cn.js" />
     <Content Include="lib\DataTables\jquery.dataTables-simple.css" />
     <Content Include="lib\DataTables\jquery.dataTables.css" />
     <Content Include="lib\DataTables\jquery.dataTables.default.css" />
@@ -624,6 +624,7 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Account\LogOut.cshtml" />
     <Content Include="Views\Account\RegisterProfile.cshtml" />
+    <Content Include="Views\Shared\_LangPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

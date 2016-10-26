@@ -1,6 +1,10 @@
 ﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var addDisplay = ViewBag.addDisplay;
+    var editDisplay = ViewBag.editDisplay;
+    var delDisplay = ViewBag.delDisplay;
 }
 
 @Styles.Render("~/lib/DataTables/dataTables")
@@ -20,11 +24,13 @@
     <div class="row-fluid">
 
         <div class="btn-toolbar">
-            <button class="btn btn-primary" onclick="javascript: addResource();"><i class="icon-plus"></i>@EasyResource.Value("UI_Add_Resource")</button>
+            <button class="btn btn-primary" id="btnAdd" onclick="javascript: addResource();"><i class="icon-plus"></i>@EasyResource.Value("UI_Add_Resource")</button>
             <button class="btn">@EasyResource.Value("UI_Import")</button>
             <button class="btn">@EasyResource.Value("UI_Export")</button>
             <div class="btn-group">
             </div>
+
+
         </div>
         <div class="well">
             <table class="table responsive-table responsive-table-on" id="resource-table">
@@ -92,13 +98,15 @@
         };
 
         $(document).ready(function () {
+            //显示隐藏按钮
+            $("#btnAdd").css("display", "@addDisplay");
             loadTable();
         });
 
         loadTable = function () {
             table = $('#resource-table').dataTable({
                 "oLanguage": {
-                    "sUrl": "/lib/datatables/i18n/en-us.js"
+                    "sUrl": "/lib/datatables/i18n/" + lang + ".js"
                 },
                 "sPaginationType": "full_numbers",
                 "bAutoWidth": true,
@@ -156,8 +164,8 @@
                     mRender: function (oObj, sVal, tea) {
                         var html;
                         html = "<span class=\"button-group compact\">";
-                        html = html + "<a title=\"@EasyResource.Value("UI_Edit")\" class=\"button  with-tooltip\" href=\"javascript:void('0');\" onclick=\"javascript: editResource('" + oObj + "');\">@EasyResource.Value("UI_Edit")</a> | ";
-                        html = html + "<a title=\"@EasyResource.Value("UI_Delete")\" class=\"button with-tooltip\" href=\"javascript:void('0');\" onclick=\"javascript: deleteResource('" + oObj + "');\">@EasyResource.Value("UI_Delete")</a>";
+                        html = html + "<a title=\"@EasyResource.Value("UI_Edit")\" style=\"display:@editDisplay\" class=\"button  with-tooltip\" href=\"javascript:void('0');\" onclick=\"javascript: editResource('" + oObj + "');\">@EasyResource.Value("UI_Edit")</a> | ";
+                        html = html + "<a title=\"@EasyResource.Value("UI_Delete")\" style=\"display:@delDisplay\" class=\"button with-tooltip\" href=\"javascript:void('0');\" onclick=\"javascript: deleteResource('" + oObj + "');\">@EasyResource.Value("UI_Delete")</a>";
                         html = html + "</span>";
                         return html;
                     }
@@ -173,7 +181,7 @@
         }
 
         function addResource() {
-            window.location.href = "/Admin/Resource/Edit";
+            window.location.href = "/Admin/Resource/Add";
         }
 
         function deleteResource(id) {

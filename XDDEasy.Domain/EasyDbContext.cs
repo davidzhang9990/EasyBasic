@@ -17,6 +17,7 @@ using XDDEasy.Domain.AccountAggregates;
 using XDDEasy.Domain.Configuration;
 using XDDEasy.Domain.EmailAggregates;
 using XDDEasy.Domain.LogAggregates;
+using XDDEasy.Domain.PageAggregates;
 using XDDEasy.Domain.ProfileAggregates;
 using XDDEasy.Domain.ResourceAggregates;
 using XDDEasy.Domain.UserLogger;
@@ -62,6 +63,9 @@ namespace XDDEasy.Domain
         public DbSet<Log> Logs { get; set; }
         public DbSet<Resource> Resources { get; set; }
 
+        public DbSet<Page> Pages { get; set; }
+        public DbSet<RolePage> RolePages { get; set; }
+
         public DbSet<Email> Emails { get; set; }
 
         public DbSet<EmailTemplate> EmailTemplates { get; set; }
@@ -71,6 +75,8 @@ namespace XDDEasy.Domain
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Configurations.Add(new UserModelConfig());
+
+            modelBuilder.Configurations.Add(new RolePageModelConfig());
 
             modelBuilder.Entity<IdentityUser>().ToTable("Users");
             modelBuilder.Entity<User>().ToTable("Users");

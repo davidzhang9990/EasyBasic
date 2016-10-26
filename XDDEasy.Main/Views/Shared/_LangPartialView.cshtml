@@ -1,0 +1,8 @@
+﻿@using Common.Helper
+@{
+    string lang = LangHelper.GetLanguage();
+}
+<script type="text/javascript" src="~/api/resource/culture/@lang"></script>
+<script type="text/javascript">
+    var lang = "@lang";
+</script>
