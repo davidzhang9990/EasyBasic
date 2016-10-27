@@ -338,11 +338,8 @@ function confirmMsgModal(title, msgContent, callBackFunc) {
         width: "200px",
         height: "80px",
         content: msg,
-        //closeOnBlur: true,
         resizable: false,
         buttonsAlign: "center",
-        isShowTopBtns: false,
-        actionCloseCaption: EqlResource.UI_Action_Close,
         buttons: {
             'OK': {
                 caption: EqlResource.UI_Action_Yes,

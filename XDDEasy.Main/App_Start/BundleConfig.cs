@@ -30,13 +30,17 @@ namespace XDDEasy.Main
         public static void RegisterScripts(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/formCommon").Include(
+                 
                "~/js/libs/formValidator/jquery.validationEngine.js",
                "~/js/libs/formValidator/languages/jquery.validationEngine-en.js"
                ));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                    "~/Scripts/jquery-{version}.js",
-                   "~/scripts/customize/common.js"
+                   "~/scripts/customize/common.js",
+                    "~/lib/modernizr.custom.js",
+                   "~/scripts/customize/setup.js",
+                   "~/scripts/customize/eq.modal.js"
            ));
 
             bundles.Add(new ScriptBundle("~/bundles/formCommon").Include(
@@ -73,7 +77,8 @@ namespace XDDEasy.Main
                        ));
 
             bundles.Add(new StyleBundle("~/css/styles/common").Include(
-                        "~/lib/formValidator/eq.validationEngine.css"
+                        "~/lib/formValidator/eq.validationEngine.css",
+                         "~/css/modal.css"
                         ));
 
         }
