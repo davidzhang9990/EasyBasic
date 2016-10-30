@@ -48,6 +48,14 @@ namespace XDDEasy.Contract
 
     [DataContract]
     [JsonObject]
+    public class CreateRoleRequest
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    [DataContract]
+    [JsonObject]
     public class CreateRolePageRequest
     {
         public Guid RoleId { get; set; }

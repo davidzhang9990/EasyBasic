@@ -80,6 +80,30 @@ namespace XDDEasy.WebApi.Host.Controllers
             return result;
         }
 
+
+        [HttpPost]
+        [Route("rolepage")]
+        [Transaction]
+        [CheckModelForNull]
+        [ValidateModelState]
+        public void AddRolePage(CreateRolePageRequest request)
+        {
+            _pageService.AddRolePage(request);
+        }
+
+        public void AddRole()
+        {
+            
+        }
+
+        [HttpDelete]
+        [Route("{pageId:guid}/role/{roleId:guid}")]
+        [Transaction]
+        public void DeleteRolePage(Guid pageId, Guid roleId)
+        {
+            _pageService.DeleteRolePage(pageId, roleId);
+        }
+
         [HttpGet]
         [Route("user/{userId:guid?}")]
         public IEnumerable<RolePageResponse> GetRolePages(Guid? userId = default(Guid?))
@@ -93,24 +117,6 @@ namespace XDDEasy.WebApi.Host.Controllers
         public IEnumerable<RolePageResponse> GetRolePagesByRoleName(string roleNames = null)
         {
             return _pageService.GetRolePagesByRoleName(roleNames);
-        }
-
-        [HttpPost]
-        [Route("rolepage")]
-        [Transaction]
-        [CheckModelForNull]
-        [ValidateModelState]
-        public void AddRolePage(CreateRolePageRequest request)
-        {
-            _pageService.AddRolePage(request);
-        }
-
-        [HttpDelete]
-        [Route("{pageId:guid}/role/{roleId:guid}")]
-        [Transaction]
-        public void DeleteRolePage(Guid pageId, Guid roleId)
-        {
-            _pageService.DeleteRolePage(pageId, roleId);
         }
     }
 }

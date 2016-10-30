@@ -10,6 +10,7 @@ using XDDEasy.Contract;
 using XDDEasy.Domain.Identity;
 using Common.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace XDDEasy.Domain.PageAggregates
 {
@@ -110,6 +111,19 @@ namespace XDDEasy.Domain.PageAggregates
             return pages;
         }
 
+        /// <summary>
+        /// 添加角色
+        /// </summary>
+        /// <param name="roleName"></param>
+        public void AddRole(string roleName)
+        {
+            _roleManager.Create(new IdentityRole { Name = roleName });
+        }
+
+        /// <summary>
+        /// 添加角色页面
+        /// </summary>
+        /// <param name="request"></param>
         public void AddRolePage(CreateRolePageRequest request)
         {
             var rolePage = Mapper.Map<RolePage>(request);
