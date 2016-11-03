@@ -22,13 +22,13 @@ begin
         Declare @AddedBy varchar(50)
         Declare @UpdatedBy varchar(50)
 		Declare curr_Resource Cursor For 
-		select  [Id],[Name],[Value],[Culture],[Type],[Group],[DateAdded],[DateUpdated],[AddedBy],[UpdatedBy] FROM [dbo].[Resource]
+		select  [Id],[Name],[Value],[Culture],[Type],[Group],[DateAdded],[DateUpdated],[AddedBy],[UpdatedBy] FROM [dbo].[Resource] order by [Culture]
 		Open curr_Resource 
 		Fetch next From curr_Resource Into @Id,@Name,@Value,@Culture,@Type,@Group,@DateAdded,@DateUpdated,@AddedBy,@UpdatedBy
 		While @@fetch_status=0 
 		Begin 
 
-			print 'Insert Into [dbo].[Resource] values('''+ @Id +''','''+ @Name +''','''+ @Value +''','''+ @Culture +''','''+ @Type +''','''+ @Group +''','''+ CONVERT(varchar(100), @DateAdded, 9) +''','''+CONVERT(varchar(100), @DateUpdated, 9) +''','''+ @AddedBy +''','''+ @UpdatedBy +''')'
+			print 'Insert Into [dbo].[Resource] values('''+ @Id +''','''+ @Name +''',N'''+ @Value +''','''+ @Culture +''','''+ @Type +''','''+ @Group +''','''+ CONVERT(varchar(100), @DateAdded, 9) +''','''+CONVERT(varchar(100), @DateUpdated, 9) +''','''+ @AddedBy +''','''+ @UpdatedBy +''')'
 			
 		Fetch Next From curr_Resource Into @Id,@Name,@Value,@Culture,@Type,@Group,@DateAdded,@DateUpdated,@AddedBy,@UpdatedBy
 		End 
