@@ -66,12 +66,6 @@ namespace XDDEasy.Domain.PageAggregates
             return options.ApplyTo(_pageRepository.GetQuery()) as IEnumerable<Page>;
         }
 
-        public void AddRole(string role)
-        {
-            if (!_roleManager.RoleExists(role.ToString()))
-                _roleManager.Create(new IdentityRole { Name = role.ToString() });
-        }
-
         public PageResponse AddPage(CreatePageRequest request)
         {
             var page = Mapper.Map<Page>(request);
