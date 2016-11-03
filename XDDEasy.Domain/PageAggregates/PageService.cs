@@ -10,6 +10,7 @@ using XDDEasy.Contract;
 using XDDEasy.Domain.Identity;
 using Common.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace XDDEasy.Domain.PageAggregates
 {
@@ -19,6 +20,8 @@ namespace XDDEasy.Domain.PageAggregates
         IEnumerable<Page> GetPaging(ODataQueryOptions<Page> options);
 
         Page GetPages(Guid pageId);
+
+        void AddRole(string role);
 
         PageResponse AddPage(CreatePageRequest request);
         void EditPage(Guid pageId, UpdatePageRequest request);
@@ -61,6 +64,12 @@ namespace XDDEasy.Domain.PageAggregates
         public IEnumerable<Page> GetPaging(ODataQueryOptions<Page> options)
         {
             return options.ApplyTo(_pageRepository.GetQuery()) as IEnumerable<Page>;
+        }
+
+        public void AddRole(string role)
+        {
+            if (!_roleManager.RoleExists(role.ToString()))
+                _roleManager.Create(new IdentityRole { Name = role.ToString() });
         }
 
         public PageResponse AddPage(CreatePageRequest request)

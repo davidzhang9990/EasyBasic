@@ -24,7 +24,9 @@
     <div class="row-fluid">
 
         <div class="btn-toolbar">
-            <button class="btn btn-primary" id="btnAdd" onclick="javascript: addPages();"><i class="icon-plus"></i>@EasyResource.Value("UI_Add_Pages")</button>
+            <button class="btn btn-primary" id="btnAdd" onclick=" javascript: addPages(); "><i class="icon-plus"></i>@EasyResource.Value("UI_Add_Pages")</button>
+            <button class="btn" onclick=" javascript: addRole(); ">@EasyResource.Value("UI_Add_Role")</button>
+            <button class="btn">@EasyResource.Value("UI_Role_Manage")</button>
             <button class="btn">@EasyResource.Value("UI_Import")</button>
             <button class="btn">@EasyResource.Value("UI_Export")</button>
             <div class="btn-group">
@@ -33,15 +35,15 @@
         <div class="well">
             <table class="table responsive-table responsive-table-on" id="resource-table">
                 <thead>
-                <tr>
-                    <th>@EasyResource.Value("UI_Pages_Name")</th>
-                    <th>@EasyResource.Value("UI_ActionName")</th>
-                    <th>@EasyResource.Value("UI_ControlName")</th>
-                    <th>@EasyResource.Value("UI_Area")</th>
-                    <th>@EasyResource.Value("UI_ShowPage")</th>
-                    <th>@EasyResource.Value("UI_UpdatedTime")</th>
-                    <th style="width: 100px;"></th>
-                </tr>
+                    <tr>
+                        <th>@EasyResource.Value("UI_Pages_Name")</th>
+                        <th>@EasyResource.Value("UI_ActionName")</th>
+                        <th>@EasyResource.Value("UI_ControlName")</th>
+                        <th>@EasyResource.Value("UI_Area")</th>
+                        <th>@EasyResource.Value("UI_ShowPage")</th>
+                        <th>@EasyResource.Value("UI_UpdatedTime")</th>
+                        <th style="width: 100px;"></th>
+                    </tr>
                 </thead>
             </table>
         </div>
@@ -68,6 +70,7 @@
     <script>
 
         var table, contentsUI;
+        var addModal;
 
         newUrl = function () {
             return "/api/page/paging";
@@ -173,6 +176,10 @@
 
         function addPages() {
             window.location.href = "/Admin/Pages/Add";
+        }
+
+        addRole = function () {
+            addModal = popWin("/Admin/Pages/AddRole", '@EasyResource.Value("UI_Add_Role")', 300, 300);
         }
 
         function deletePages(id) {

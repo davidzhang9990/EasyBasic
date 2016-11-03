@@ -63,40 +63,6 @@
 <body class="">
     <!--<![endif]-->
 
-    <div class="navbar">
-        <div class="navbar-inner">
-            <ul class="nav pull-right">
-                <li style="padding: 5px;">
-                    <select id="easyLanguage" style="width: 100px;" onchange="app.setLanguae('@LangHelper.EQ_LANGUAGE_KEY', this.value, true)">
-                        <option value="en-US">英文</option>
-                        <option value="zh-CN">中文</option>
-                    </select>
-                </li>
-                <li><a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">@EasyResource.Value("UI_Settings")</a></li>
-                <li id="fat-menu" class="dropdown">
-                    <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-user"></i>@string.Format("{0}", ClaimHelper.GetClaimValue(EasyClaimType.UserName))
-                        <i class="icon-caret-down"></i>
-                    </a>
-
-                    <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href="#">@EasyResource.Value("UI_Account")</a></li>
-                        <li class="divider"></li>
-                        <li><a tabindex="-1" class="visible-phone" href="#">@EasyResource.Value("UI_Settings")</a></li>
-                        <li class="divider visible-phone"></li>
-                        <li><a tabindex="-1" href="/Account/LogOut">@EasyResource.Value("UI_LogOut")</a></li>
-                    </ul>
-                </li>
-
-            </ul>
-            <a class="brand" href="/"><span class="first">@EasyResource.Value("UI_SiteTitle")</span><span class="second">@EasyResource.Value("UI_SiteName")</span></a>
-        </div>
-    </div>
-
-
-    @Html.Partial("_MenuTable")
-
-
     <div class="content">
         @RenderBody()
     </div>
@@ -104,14 +70,5 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("ScriptSection", false)
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            var lan = app.getCookie('@LangHelper.EQ_LANGUAGE_KEY');
-            $("#easyLanguage").val(lan);
-        });
-
-
-    </script>
 </body>
 </html>
