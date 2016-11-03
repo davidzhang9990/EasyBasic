@@ -28,7 +28,7 @@ begin
 		While @@fetch_status=0 
 		Begin 
 
-			print 'Insert Into [dbo].[Resource] values('''+ @Id +''','''+ @Name +''',N'''+ @Value +''','''+ @Culture +''','''+ @Type +''','''+ @Group +''','''+ CONVERT(varchar(100), @DateAdded, 9) +''','''+CONVERT(varchar(100), @DateUpdated, 9) +''','''+ @AddedBy +''','''+ @UpdatedBy +''')'
+			print 'Insert Into [dbo].[Resource] values('''+ @Id +''','''+ @Name +''',N'''+ @Value +''','''+ @Culture +''','''+ @Type +''','''+ @Group +''',GETDATE(),GETDATE(),'''+ @AddedBy +''','''+ @UpdatedBy +''')'
 			
 		Fetch Next From curr_Resource Into @Id,@Name,@Value,@Culture,@Type,@Group,@DateAdded,@DateUpdated,@AddedBy,@UpdatedBy
 		End 

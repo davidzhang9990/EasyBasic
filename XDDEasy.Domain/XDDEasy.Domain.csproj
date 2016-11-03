@@ -212,7 +212,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountAggregates\AccountService.cs" />
-    <Compile Include="AccountAggregates\Role.cs" />
     <Compile Include="AccountAggregates\User.cs" />
     <Compile Include="Configuration\RolePageModelConfig.cs" />
     <Compile Include="Configuration\UserModelConfig.cs" />

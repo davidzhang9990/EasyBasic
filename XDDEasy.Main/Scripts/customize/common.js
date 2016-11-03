@@ -458,7 +458,7 @@ function popNonCloseWin(url, caption, width, height, btns, isShow) {
         actionCloseCaption: EqlResource.UI_Tip_Hide,
         isShowTopBtns: isShow,
         buttons: btns ? btns : {},
-        isShowMaximize: true,
+        isShowMaximize: false,
         buttons: btns ? btns : {},
         ajax: {
             success: function () {

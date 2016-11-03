@@ -561,7 +561,7 @@
 
             // Bloc style
             // The wrapping div is required because iOS ignores iframe size attributes
-            contentWrapper = '<div style="width:' + settings.width + 'px; height:' + settings.height + 'px; -webkit-overflow-scrolling:touch; overflow: auto; padding-top: 2rem">' +
+            contentWrapper = '<div style="width:' + settings.width + 'px; height:' + settings.height + 'px; -webkit-overflow-scrolling:touch; overflow: hidden; padding-top: 2rem">' +
 								'<iframe  class="modal-iframe" src="' + (settings.url || '') + '" frameborder="0" width="' + settings.width + '" height="' + settings.height + '"' + scrolling + '></iframe>' +
 							'</div>';
         }
