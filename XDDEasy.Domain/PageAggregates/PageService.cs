@@ -21,6 +21,8 @@ namespace XDDEasy.Domain.PageAggregates
 
         Page GetPages(Guid pageId);
 
+        void AddRole(string role);
+
         PageResponse AddPage(CreatePageRequest request);
         void EditPage(Guid pageId, UpdatePageRequest request);
         void DeletePage(Guid pageId);
@@ -62,6 +64,12 @@ namespace XDDEasy.Domain.PageAggregates
         public IEnumerable<Page> GetPaging(ODataQueryOptions<Page> options)
         {
             return options.ApplyTo(_pageRepository.GetQuery()) as IEnumerable<Page>;
+        }
+
+        public void AddRole(string role)
+        {
+            if (!_roleManager.RoleExists(role.ToString()))
+                _roleManager.Create(new IdentityRole { Name = role.ToString() });
         }
 
         public PageResponse AddPage(CreatePageRequest request)

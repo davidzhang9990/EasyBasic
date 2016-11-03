@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "AddRole";
+    Layout = "~/Views/Shared/_NotMenuAdminLayout.cshtml";
+}
+
+
+
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active in" id="home">
+                    <form id="tab">
+                        <label>@EasyResource.Value("UI_Role_Name")</label>
+                        <input type="text" id="txtName" class="input input-xlarge validate[required,ajax[ajaxCall]]">
+                    </form>
+
+                    <button class="btn btn-primary" id="btnSave"><i class="icon-save"></i> @EasyResource.Value("UI_Save")</button>
+                    <a href="#myModal" data-toggle="modal" class="btn">@EasyResource.Value("UI_Canel")</a>
+
+                    <input id="hidId" type="hidden" value="" />
+                </div>
+
+            </div>
+
+

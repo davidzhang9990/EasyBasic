@@ -35,6 +35,16 @@ namespace XDDEasy.WebApi.Host.Controllers
         [Transaction]
         [CheckModelForNull]
         [ValidateModelState]
+        public void AddRole(string role)
+        {
+            _pageService.AddRole(role);
+        }
+
+        [HttpPost]
+        [Route("")]
+        [Transaction]
+        [CheckModelForNull]
+        [ValidateModelState]
         public PageResponse AddPage(CreatePageRequest request)
         {
             return _pageService.AddPage(request);

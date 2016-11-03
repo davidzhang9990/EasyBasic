@@ -35,5 +35,10 @@ namespace XDDEasy.Main.Areas.Admin.Controllers
             }
             return RedirectToAction("Index", "Pages", new { area = "Admin" });
         }
+
+        public ActionResult AddRole(Guid? id)
+        {
+            return View();
+        }
     }
 }

@@ -24,7 +24,8 @@ namespace XDDEasy.Main
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css"));
+                      "~/Content/bootstrap.css"
+                      ));
         }
 
         public static void RegisterScripts(BundleCollection bundles)
@@ -78,7 +79,8 @@ namespace XDDEasy.Main
 
             bundles.Add(new StyleBundle("~/css/styles/common").Include(
                         "~/lib/formValidator/eq.validationEngine.css",
-                         "~/css/modal.css"
+                         "~/css/modal.css",
+                         "~/css/font-awesome.min.css"
                         ));
 
         }

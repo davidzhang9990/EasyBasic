@@ -263,6 +263,7 @@
     <Content Include="css\ccg-login.css" />
     <Content Include="css\ccg-menu.css" />
     <Content Include="css\ccgs.css" />
+    <Content Include="css\font-awesome.css" />
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\modal.css" />
     <Content Include="css\nav.css" />
@@ -568,6 +569,7 @@
     <Content Include="Areas\Admin\Views\Resource\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Pages\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Pages\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Pages\AddRole.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\customize\common.js" />
     <Content Include="Scripts\customize\customizePaging.js" />
@@ -632,6 +634,7 @@
     <Content Include="Views\Account\LogOut.cshtml" />
     <Content Include="Views\Account\RegisterProfile.cshtml" />
     <Content Include="Views\Shared\_LangPartialView.cshtml" />
+    <Content Include="Views\Shared\_NotMenuAdminLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
