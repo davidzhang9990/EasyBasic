@@ -59,11 +59,26 @@
         };
 
         $(document).ready(function () {
+
+            var plist = [
+                {
+                    "id": "C5EE444C-62ED-4DF9-AF39-36966DAA0526",
+                    "label": "管理员管理",
+                    "inode": true,
+                    "open": true,
+                    "checkbox": true,
+                    "radio": false,
+                    "branch": [
+                        { "id": 2, "label": "管理员管理", "inode": false, "checkbox": true, "radio": false },
+                        { "id": 3, "label": "修改财务", "inode": false, "checkbox": true, "radio": false },
+                        { "id": 4, "label": "财务管理", "inode": false, "checkbox": true, "radio": false }
+                    ]
+                }
+            ];
+
             //显示隐藏按钮
             $('#tree').aciTree({
-                ajax: {
-                    url: '/lib/aciTree/json/checkbox.json'
-                },
+                rootData: plist,
                 checkbox: true
             });
 
