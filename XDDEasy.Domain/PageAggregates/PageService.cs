@@ -23,6 +23,8 @@ namespace XDDEasy.Domain.PageAggregates
 
         void AddRole(string role);
 
+        List<IdentityRole> GetRoleList();
+
         PageResponse AddPage(CreatePageRequest request);
         void EditPage(Guid pageId, UpdatePageRequest request);
         void DeletePage(Guid pageId);
@@ -120,6 +122,13 @@ namespace XDDEasy.Domain.PageAggregates
         public void AddRole(string roleName)
         {
             _roleManager.Create(new IdentityRole { Name = roleName });
+
+            
+        }
+
+        public List<IdentityRole> GetRoleList()
+        {
+           return  _roleManager.Roles.ToList();
         }
 
         /// <summary>

@@ -3,26 +3,64 @@
     Layout = "~/Views/Shared/_NotMenuAdminLayout.cshtml";
 }
 
+<form>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="well" style="height: 220px;">
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane active in" id="home">
 
-<div class="container-fluid" >
-    <div class="row-fluid">
-        <div class="well" style="height: 220px;">
-            <div id="myTabContent" class="tab-content">
-                <div class="tab-pane active in" id="home">
-                    <form id="tab">
                         <label>@EasyResource.Value("UI_Role_Name")</label>
-                        <input type="text" id="txtName" class="input input-xlarge validate[required,ajax[ajaxCall]]">
-                    </form>
+                        <input class="input validate[required]" id="RoleName" type="text" value="" style="width: 300px;" data-errormessage-value-missing="@EasyResource.Value("UI_ValMsg_RoleName")" />
 
-                    <button class="btn btn-primary" id="btnSave"><i class="icon-save"></i> @EasyResource.Value("UI_Save")</button>
-                    <a href="#myModal" data-toggle="modal" class="btn">@EasyResource.Value("UI_Canel")</a>
+                        <br />
+                        <br />
+                        <br />
+                        <button class="btn btn-primary" id="btnSave" onclick="save()"><i class="icon-save"></i> @EasyResource.Value("UI_Save")</button>&nbsp;&nbsp;
+                        <a href="javascript:;" data-toggle="modal" class="btn" onclick="closeModal()">@EasyResource.Value("UI_Canel")</a>
 
-                    <input id="hidId" type="hidden" value="" />
+                        <input id="hidId" type="hidden" value="" />
+                    </div>
+
                 </div>
-
             </div>
         </div>
     </div>
-</div>
+</form>
+@section ScriptSection
+{
+    @Scripts.Render("~/bundles/formCommon")
+    <script type="text/javascript">
 
+        $(document).ready(function () {
+            $('form').validationEngine();
+        });
+
+        save = function () {
+            if (!$('form').validationEngine("validate")) return;
+
+            var rolename = $("#RoleName").val();
+            var addUrl = "/api/page/addrole/" + rolename;
+
+            $.ajax({
+                type: 'POST',
+                url: addUrl,
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    $("#btnSave").prop("disabled", "disabled");
+                },
+                success: function (results, textStatus) {
+                    closeModal();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    $("#btnSave").prop("disabled", "");
+                }
+            });
+        };
+
+        closeModal = function () {
+            parent.closeAddModal();
+        };
+    </script>
+}
 

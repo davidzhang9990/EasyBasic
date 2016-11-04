@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="~/lib/aciTree/css/aciTree.css" media="all">
+<link rel="stylesheet" type="text/css" href="~/lib/aciTree/css/demo.css" media="all">
+
+
+<div class="header">
+
+    <h1 class="page-title">@EasyResource.Value("UI_Role_Manage")</h1>
+</div>
+
+<ul class="breadcrumb">
+    <li><a href="/Admin/Member">@EasyResource.Value("UI_Home")</a> <span class="divider">/</span></li>
+    <li class="active">@EasyResource.Value("UI_Role_Manage")</li>
+</ul>
+
+<form>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="well" style="height: 220px;">
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane active in" id="home">
+
+                        <label>@EasyResource.Value("UI_Role_Name")</label>
+                        <select id="ddlRole">
+                            <option></option>
+                        </select>
+                        <input class="input validate[required]" id="RoleName" type="text" value="" style="width: 300px;" data-errormessage-value-missing="@EasyResource.Value("UI_ValMsg_RoleName")" />
+
+                        <div id="tree" class="aciTree" style="width: 700px;">
+
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <button class="btn btn-primary" id="btnSave" onclick=" save() "><i class="icon-save"></i> @EasyResource.Value("UI_Save")</button>&nbsp;&nbsp;
+                        <a href="javascript:;" data-toggle="modal" class="btn" onclick=" closeModal() ">@EasyResource.Value("UI_Canel")</a>
+
+                        <input id="hidId" type="hidden" value="" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section ScriptSection{
+
+    @Scripts.Render("~/bundles/aciTree")
+
+    <script>
+
+        newUrl = function () {
+            return "/api/page/paging";
+        };
+
+        $(document).ready(function () {
+            //显示隐藏按钮
+            $('#tree').aciTree({
+                ajax: {
+                    url: '/lib/aciTree/json/checkbox.json'
+                },
+                checkbox: true
+            });
+
+        });
+    </script>
+}
+
+
+
+

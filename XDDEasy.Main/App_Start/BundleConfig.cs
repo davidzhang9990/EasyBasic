@@ -44,6 +44,14 @@ namespace XDDEasy.Main
                    "~/scripts/customize/eq.modal.js"
            ));
 
+            bundles.Add(new ScriptBundle("~/bundles/aciTree").Include(
+                   "~/Scripts/jquery-{version}.js",
+                   "~/lib/aciTree/js/jquery.aciPlugin.min.js",
+                    "~/lib/aciTree/js/jquery.aciTree.dom.js",
+                   "~/lib/aciTree/js/jquery.aciTree.core.js",
+                   "~/lib/aciTree/js/jquery.aciTree.checkbox.js"
+           ));
+
             bundles.Add(new ScriptBundle("~/bundles/formCommon").Include(
                "~/lib/formValidator/jquery.validationEngine.js",
                "~/lib/formValidator/languages/jquery.validationEngine-en.js"

@@ -40,5 +40,10 @@ namespace XDDEasy.Main.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public ActionResult RoleList()
+        {
+            return View();
+        }
     }
 }

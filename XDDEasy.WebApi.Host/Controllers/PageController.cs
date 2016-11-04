@@ -8,6 +8,7 @@ using AutoMapper;
 using XDDEasy.Contract;
 using XDDEasy.Domain.PageAggregates;
 using Common.WebApi.Attributes;
+using Microsoft.AspNet.Identity.EntityFramework;
 using XDDEasy.Contract.ResourceContract;
 
 namespace XDDEasy.WebApi.Host.Controllers
@@ -31,13 +32,18 @@ namespace XDDEasy.WebApi.Host.Controllers
         }
 
         [HttpPost]
-        [Route("")]
-        [Transaction]
-        [CheckModelForNull]
-        [ValidateModelState]
-        public void AddRole(string role)
+        [Route("addrole/{roleName?}")]
+        [AllowAnonymous]
+        public void AddRole(string roleName = null)
         {
-            _pageService.AddRole(role);
+            _pageService.AddRole(roleName);
+        }
+
+        [HttpGet]
+        [Route("GetRoleList")]
+        public List<IdentityRole> GetRoleList()
+        {
+           return _pageService.GetRoleList();
         }
 
         [HttpPost]
@@ -99,11 +105,6 @@ namespace XDDEasy.WebApi.Host.Controllers
         public void AddRolePage(CreateRolePageRequest request)
         {
             _pageService.AddRolePage(request);
-        }
-
-        public void AddRole()
-        {
-            
         }
 
         [HttpDelete]
