@@ -877,15 +877,15 @@
         });
 
         // Center and display effect
-        modal.centerModal().css({
-            'opacity': 0,
-            'marginTop': '-30px'
-        }).animate({
-            'opacity': 1,
-            'marginTop': '10px'
-        }, 200).animate({
-            'marginTop': 0
-        }, 100);
+        //modal.centerModal().css({
+        //    'opacity': 0,
+        //    'marginTop': '-30px'
+        //}).animate({
+        //    'opacity': 1,
+        //    'marginTop': '10px'
+        //}, 200).animate({
+        //    'marginTop': 0
+        //}, 100);
 
         // Store as current
         $.modal.current = modal;

@@ -558,7 +558,7 @@
     <Content Include="Areas\Admin\Views\Member\Index.cshtml" />
     <Content Include="Areas\Member\Views\Web.config" />
     <Content Include="Areas\Member\Views\Member\Index.cshtml" />
-    <Content Include="font\Avenir.ttc" />
+    <Content Include="fonts\Avenir.ttc" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
