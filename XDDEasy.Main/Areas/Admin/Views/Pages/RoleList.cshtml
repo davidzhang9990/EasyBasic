@@ -4,7 +4,7 @@
 }
 
 <link rel="stylesheet" type="text/css" href="~/lib/aciTree/css/aciTree.css" media="all">
-<link rel="stylesheet" type="text/css" href="~/lib/aciTree/css/demo.css" media="all">
+
 
 
 <div class="header">
@@ -20,26 +20,25 @@
 <form>
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="well" style="height: 220px;">
+            <div class="btn-toolbar">
+                <button class="btn btn-primary" id="btnSave" onclick=" save() "><i class="icon-save"></i> @EasyResource.Value("UI_Save")</button>&nbsp;&nbsp;
+                <a href="javascript:;" data-toggle="modal" class="btn" onclick="closeModal() ">@EasyResource.Value("UI_Canel")</a>
+                <input id="hidId" type="hidden" value="" />
+                <div class="btn-group">
+                </div>
+            </div>
+            <div class="well">
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane active in" id="home">
 
                         <label>@EasyResource.Value("UI_Role_Name")</label>
                         <select id="ddlRole">
-                            <option></option>
+                           
                         </select>
-                        <input class="input validate[required]" id="RoleName" type="text" value="" style="width: 300px;" data-errormessage-value-missing="@EasyResource.Value("UI_ValMsg_RoleName")" />
 
                         <div id="tree" class="aciTree" style="width: 700px;">
 
                         </div>
-                        <br />
-                        <br />
-                        <br />
-                        <button class="btn btn-primary" id="btnSave" onclick=" save() "><i class="icon-save"></i> @EasyResource.Value("UI_Save")</button>&nbsp;&nbsp;
-                        <a href="javascript:;" data-toggle="modal" class="btn" onclick=" closeModal() ">@EasyResource.Value("UI_Canel")</a>
-
-                        <input id="hidId" type="hidden" value="" />
                     </div>
 
                 </div>
@@ -54,34 +53,47 @@
 
     <script>
 
-        newUrl = function () {
-            return "/api/page/paging";
-        };
-
-        $(document).ready(function () {
-
-            var plist = [
-                {
-                    "id": "C5EE444C-62ED-4DF9-AF39-36966DAA0526",
-                    "label": "管理员管理",
-                    "inode": true,
-                    "open": true,
-                    "checkbox": true,
-                    "radio": false,
-                    "branch": [
-                        { "id": 2, "label": "管理员管理", "inode": false, "checkbox": true, "radio": false },
-                        { "id": 3, "label": "修改财务", "inode": false, "checkbox": true, "radio": false },
-                        { "id": 4, "label": "财务管理", "inode": false, "checkbox": true, "radio": false }
-                    ]
+        $(document).ready(function() {
+            var rootroles = [];
+            app.ajax.get('/api/page/GetRoleList', true, function (roles) {
+                if (roles.length > 0) {
+                    $.each(roles, function (idx, role) {
+                        rootroles.push(role.id);
+                    });
+                    $("#ddlRole").val(rootroles.join(','));
                 }
-            ];
-
-            //显示隐藏按钮
-            $('#tree').aciTree({
-                rootData: plist,
-                checkbox: true
             });
+           
 
+            app.ajax.get('/api/page/paging', true, function(pages) {
+
+                if (pages.items.length > 0) {
+                    var rootpage = [];
+                    $.each(pages.items, function(idx, page) {
+                        var p = { id: page.id, label: page.name, ctrlName: page.controlName, inode: false, open: false, checkbox: true, radio: false, branch: [] }
+                        if (page.actionName === "Index") {
+                            rootpage.push(p);
+                        }
+                    });
+
+                    $.each(pages.items, function(idx, page) {
+                        if (page.actionName !== "Index") {
+                            $.each(rootpage, function(idx, rpage) {
+                                if (rpage.ctrlName === page.controlName) {
+                                    var p1 = { id: page.id, label: page.name, ctrlName: page.controlName, inode: false, open: false, checkbox: true, radio: false, branch: [] }
+                                    rpage.inode = true;
+                                    rpage.branch.push(p1);
+                                    rootpage.push(p1);
+                                }
+                            });
+                        }
+                    });
+                    $('#tree').aciTree({
+                        rootData: rootpage,
+                        checkbox: true
+                    });
+                }
+            });
         });
     </script>
 }
