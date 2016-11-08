@@ -32,9 +32,7 @@
                     <div class="tab-pane active in" id="home">
 
                         <label>@EasyResource.Value("UI_Role_Name")</label>
-                        <select id="ddlRole">
-                           
-                        </select>
+                        <select id="ddlRole"></select>
 
                         <div id="tree" class="aciTree" style="width: 700px;">
 
@@ -53,32 +51,33 @@
 
     <script>
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             var rootroles = [];
             app.ajax.get('/api/page/GetRoleList', true, function (roles) {
                 if (roles.length > 0) {
                     $.each(roles, function (idx, role) {
-                        rootroles.push(role.id);
+                        //rootroles.push(role.id);
+                        $("#ddlRole").append("<option value='" + role.id + "'>" + role.name + "</option>");
                     });
-                    $("#ddlRole").val(rootroles.join(','));
+                    //$("#ddlRole").val(rootroles.join(','));
                 }
             });
-           
 
-            app.ajax.get('/api/page/paging', true, function(pages) {
+
+            app.ajax.get('/api/page/paging', true, function (pages) {
 
                 if (pages.items.length > 0) {
                     var rootpage = [];
-                    $.each(pages.items, function(idx, page) {
+                    $.each(pages.items, function (idx, page) {
                         var p = { id: page.id, label: page.name, ctrlName: page.controlName, inode: false, open: false, checkbox: true, radio: false, branch: [] }
                         if (page.actionName === "Index") {
                             rootpage.push(p);
                         }
                     });
 
-                    $.each(pages.items, function(idx, page) {
+                    $.each(pages.items, function (idx, page) {
                         if (page.actionName !== "Index") {
-                            $.each(rootpage, function(idx, rpage) {
+                            $.each(rootpage, function (idx, rpage) {
                                 if (rpage.ctrlName === page.controlName) {
                                     var p1 = { id: page.id, label: page.name, ctrlName: page.controlName, inode: false, open: false, checkbox: true, radio: false, branch: [] }
                                     rpage.inode = true;
